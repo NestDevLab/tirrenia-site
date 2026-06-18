@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-17T06:41:00.293Z",
+  "previousGeneratedAt": null,
+  "menus": {
+    "nl_NL": {
+      "locale": "nl_NL",
+      "title": "Menu",
+      "description": "Bekijk het Tirrenia menu.",
+      "pages": [
+        {
+          "page": 1,
+          "src": "/menu/current/nl_NL/page-01.png",
+          "alt": "Menu page 1"
+        },
+        {
+          "page": 2,
+          "src": "/menu/current/nl_NL/page-02.png",
+          "alt": "Menu page 2"
+        },
+        {
+          "page": 3,
+          "src": "/menu/current/nl_NL/page-03.png",
+          "alt": "Menu page 3"
+        },
+        {
+          "page": 4,
+          "src": "/menu/current/nl_NL/page-04.png",
+          "alt": "Menu page 4"
+        },
+        {
+          "page": 5,
+          "src": "/menu/current/nl_NL/page-05.png",
+          "alt": "Menu page 5"
+        }
+      ],
+      "pdf": "/menu/current/nl_NL/menu.pdf"
+    },
+    "en_US": {
+      "locale": "en_US",
+      "title": "Menu",
+      "description": "Browse the Tirrenia menu.",
+      "pages": [
+        {
+          "page": 1,
+          "src": "/menu/current/en_US/page-01.png",
+          "alt": "Menu page 1"
+        },
+        {
+          "page": 2,
+          "src": "/menu/current/en_US/page-02.png",
+          "alt": "Menu page 2"
+        },
+        {
+          "page": 3,
+          "src": "/menu/current/en_US/page-03.png",
+          "alt": "Menu page 3"
+        },
+        {
+          "page": 4,
+          "src": "/menu/current/en_US/page-04.png",
+          "alt": "Menu page 4"
+        },
+        {
+          "page": 5,
+          "src": "/menu/current/en_US/page-05.png",
+          "alt": "Menu page 5"
+        }
+      ],
+      "pdf": "/menu/current/en_US/menu.pdf"
+    },
+    "it_IT": {
+      "locale": "it_IT",
+      "title": "Menu",
+      "description": "Consulta il menu Tirrenia.",
+      "pages": [
+        {
+          "page": 1,
+          "src": "/menu/current/it_IT/page-01.png",
+          "alt": "Menu page 1"
+        },
+        {
+          "page": 2,
+          "src": "/menu/current/it_IT/page-02.png",
+          "alt": "Menu page 2"
+        },
+        {
+          "page": 3,
+          "src": "/menu/current/it_IT/page-03.png",
+          "alt": "Menu page 3"
+        },
+        {
+          "page": 4,
+          "src": "/menu/current/it_IT/page-04.png",
+          "alt": "Menu page 4"
+        },
+        {
+          "page": 5,
+          "src": "/menu/current/it_IT/page-05.png",
+          "alt": "Menu page 5"
+        }
+      ],
+      "pdf": "/menu/current/it_IT/menu.pdf"
+    }
+  }
+}
