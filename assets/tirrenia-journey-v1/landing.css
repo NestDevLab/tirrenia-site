@@ -1,0 +1,334 @@
+/* ============================================================
+   Tirrenia — public landing v4
+   Concept: "From Southern Italy to the counter in Haarlem" — a single
+   continuous journey (land → fire → sea → Haarlem) built from the Story Plan.
+   Colour as cultural code: green-white-red (Italy) / red-white-blue (NL).
+   HARD CONSTRAINTS: shared tirrenia-header stays identical; page background
+   stays whitewash (#f2f0e9). Palette tokens come from assets/colors.css.
+   ============================================================ */
+
+:root {
+  --green: var(--tirrenia-emerald-green, #2e8857);
+  --green-deep: var(--tirrenia-historic-sign-green, #224b3b);
+  --red: var(--tirrenia-pompeian-red, #a42a2e);
+  --red-deep: #7e2022;
+  --blue: var(--tirrenia-capri-blue, #0f5d84);
+  --blue-deep: #0b405c;
+  --terracotta: var(--tirrenia-vesuvian-terracotta, #b55e3c);
+  --lemon: var(--tirrenia-sorrento-lemon, #eacb2f);
+  --gold: var(--tirrenia-antique-gold, #c9a64e);
+  --espresso: var(--tirrenia-dark-espresso, #3b2c28);
+  --ink: var(--tirrenia-lava-black, #1f1b1a);
+  --muted: var(--tirrenia-vesuvian-stone-gray, #4e4447);
+  --whitewash: var(--tirrenia-whitewash, #f2f0e9); /* canonical page bg — do not change */
+  --cream: var(--tirrenia-cream-white, #efe5d4);
+  --milk: var(--tirrenia-milk-cream, #f3ebde);
+
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --maxw: 1180px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+
+/* Shared-header adjustments the QR page ships in qr.css under its own .qr-shell
+   scope; this page must provide them itself. The tirrenia-header component
+   files stay untouched (also used by Odoo). */
+tirrenia-header .nav-button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+tirrenia-header .language-holder {
+  position: absolute;
+  right: 0;
+}
+
+tirrenia-header .language-options {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  right: 0;
+  display: none;
+  min-width: 152px;
+  padding: 6px;
+  border: 1px solid rgba(24, 98, 140, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 252, 247, 0.98);
+  box-shadow: 0 12px 24px rgba(45, 35, 29, 0.16);
+}
+
+tirrenia-header .language-options.is-open {
+  display: grid;
+  gap: 4px;
+}
+
+tirrenia-header .language-options button {
+  appearance: none;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #2d231d;
+  cursor: pointer;
+  font: 600 13px/1 Arial, Helvetica, sans-serif;
+  text-align: left;
+}
+
+tirrenia-header .language-options button:hover,
+tirrenia-header .language-options button.is-active {
+  background: rgba(24, 98, 140, 0.09);
+  color: var(--tirrenia-blue);
+}
+
+tirrenia-header .drawer-button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+tirrenia-header .mobile-drawer .language-holder {
+  position: relative;
+  top: auto;
+  right: auto;
+  margin-top: 20px;
+}
+
+body {
+  margin: 0;
+  background: var(--whitewash); /* identical to original */
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.62;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, p, figure, dl, dd, dt, ul { margin: 0; }
+.svg-defs { position: absolute; }
+
+/* ---- Type ---- */
+h1, h2 { font-family: var(--serif); font-weight: 500; line-height: 1.02; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.7rem, 6.2vw, 5.4rem); }
+h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
+.eyebrow {
+  margin-bottom: 18px; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--terracotta);
+}
+.eyebrow--light { color: var(--lemon); }
+.lede { font-size: 1.1rem; color: var(--muted); max-width: 50ch; }
+.hand {
+  margin-top: 18px; font-family: var(--serif); font-style: italic;
+  font-size: 1.25rem; color: var(--gold);
+}
+.band .hand { color: var(--lemon); }
+
+/* ---- CTAs ---- */
+.link-cta {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  margin-top: 26px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--terracotta); text-decoration: none;
+  border-bottom: 2px solid currentColor; padding-bottom: 3px;
+  transition: gap 180ms ease, color 180ms ease;
+}
+.link-cta:hover { gap: 0.9em; }
+.band .link-cta { color: var(--lemon); }
+.btn-solid {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  padding: 14px 26px; border-radius: 2px;
+  background: var(--red); color: #fff; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none; box-shadow: 0 10px 24px rgba(164, 42, 46, 0.28);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.btn-solid:hover { transform: translateY(-2px); background: var(--red-deep); }
+
+/* ---- Route thread (continuous dotted line through the page) ---- */
+.route {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1; pointer-events: none;
+}
+.route path {
+  fill: none; stroke: var(--gold); stroke-width: 0.5; vector-effect: non-scaling-stroke;
+  stroke-dasharray: 2 6; stroke-linecap: round; opacity: 0.85;
+}
+.band .route path { stroke: rgba(255, 255, 255, 0.7); }
+.marker {
+  position: absolute; z-index: 2; width: clamp(34px, 4vw, 46px); color: var(--terracotta);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+.marker svg { width: 100%; height: auto; display: block; }
+.marker--light { color: var(--lemon); }
+
+/* ---- Torn paper edges (whitewash tearing over the colour blocks) ---- */
+.torn { position: absolute; left: 0; width: 100%; height: clamp(22px, 3vw, 40px); z-index: 3; fill: var(--whitewash); display: block; }
+.torn--top { top: -1px; }
+.torn--bottom { bottom: -1px; transform: scaleY(-1); }
+
+/* ============================================================
+   1 · INTRO
+   ============================================================ */
+.intro {
+  position: relative;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px); align-items: center;
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(48px, 7vw, 96px) clamp(20px, 6vw, 48px) clamp(70px, 8vw, 110px);
+}
+.intro__copy { position: relative; z-index: 4; }
+.intro__copy h1 { margin: 6px 0 22px; color: var(--espresso); }
+.intro__photo { position: relative; z-index: 2; border-radius: 4px; overflow: hidden; box-shadow: 0 26px 56px rgba(31,27,26,0.22); }
+.intro__photo img { width: 100%; height: clamp(360px, 46vw, 560px); object-fit: cover; }
+.route--intro path { stroke: var(--gold); }
+
+/* ============================================================
+   Colour bands (shared)
+   ============================================================ */
+.band { position: relative; overflow: hidden; color: #fff; padding: clamp(80px, 10vw, 140px) 0; }
+.band--green { background: linear-gradient(160deg, var(--green), var(--green-deep)); }
+.band--red { background: linear-gradient(160deg, var(--red), var(--red-deep)); }
+.band--blue { background: linear-gradient(160deg, var(--blue), var(--blue-deep)); }
+
+.band__grid {
+  position: relative; z-index: 4;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(30px, 6vw, 80px); align-items: center;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 6vw, 48px);
+}
+.band__grid--rev .band__copy { order: 2; }
+.band__copy h2 { margin: 6px 0 20px; }
+.band__copy p { color: rgba(255,255,255,0.92); max-width: 46ch; }
+
+.taglist { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; padding: 0; list-style: none; }
+.taglist li {
+  padding: 7px 14px; border: 1px solid rgba(255,255,255,0.4); border-radius: 999px;
+  font-size: 0.82rem; font-weight: 600; color: #fff;
+}
+
+.band__photo { position: relative; border-radius: 4px; overflow: hidden; box-shadow: 0 26px 56px rgba(0,0,0,0.3); }
+.band__photo img { width: 100%; height: clamp(360px, 44vw, 540px); object-fit: cover; }
+.band__photo figcaption, .photo-stack__main figcaption {
+  position: absolute; left: 14px; bottom: 12px;
+  padding: 6px 12px; background: rgba(31,27,26,0.62); color: #fff;
+  font-family: var(--serif); font-style: italic; font-size: 0.95rem; border-radius: 2px;
+}
+
+/* full-bleed photo strip inside a band (sea) */
+.band__bleed { position: relative; z-index: 4; max-width: var(--maxw); margin: 0 auto clamp(36px, 5vw, 60px); padding: 0 clamp(20px, 6vw, 48px); }
+.band__bleed img { width: 100%; height: clamp(240px, 32vw, 420px); object-fit: cover; border-radius: 4px; box-shadow: 0 24px 50px rgba(0,0,0,0.32); }
+
+/* photo stack (overlapping editorial collage) */
+.photo-stack { position: relative; min-height: clamp(380px, 46vw, 560px); }
+.photo-stack figure { position: absolute; border-radius: 4px; overflow: hidden; background: #fff; box-shadow: 0 22px 46px rgba(0,0,0,0.34); }
+.photo-stack img { width: 100%; height: 100%; object-fit: cover; }
+.photo-stack__main { top: 0; left: 4%; width: 74%; aspect-ratio: 4/3.1; z-index: 1; }
+.photo-stack__a { right: 0; top: 32%; width: 46%; aspect-ratio: 1; z-index: 3; transform: rotate(3deg); border: 4px solid #fff; }
+.photo-stack__b { left: 0; bottom: 0; width: 44%; aspect-ratio: 3/2.4; z-index: 2; transform: rotate(-3deg); border: 4px solid #fff; }
+.photo-stack--shelf .photo-stack__main { width: 70%; aspect-ratio: 3/3.4; }
+.photo-stack--shelf .photo-stack__a { top: 44%; width: 50%; aspect-ratio: 4/3; }
+
+/* Caffè al banco seal */
+.seal {
+  display: grid; place-items: center; width: 108px; aspect-ratio: 1; margin-top: 28px;
+  border-radius: 50%; border: 2px dashed rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.18); color: #fff; text-align: center;
+  font-family: var(--serif); font-style: italic; font-size: 0.95rem; line-height: 1.1;
+  transform: rotate(-8deg);
+}
+
+/* ============================================================
+   Neutral passes
+   ============================================================ */
+.pass {
+  position: relative; text-align: center;
+  padding: clamp(58px, 8vw, 104px) clamp(20px, 6vw, 48px);
+  background: var(--milk);
+}
+.pass__text { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--espresso); }
+.pass__text em { font-style: italic; color: var(--terracotta); }
+.route--pass path, .route--passwave path { stroke: var(--gold); }
+
+.pass--map { padding-bottom: clamp(40px, 6vw, 72px); }
+.journey-map { display: block; width: min(560px, 92%); height: auto; margin: 22px auto 0; }
+.journey-map__route { fill: none; stroke: var(--terracotta); stroke-width: 2; stroke-dasharray: 3 7; stroke-linecap: round; }
+.journey-map__pin { color: var(--red); }
+.journey-map__pin use { color: var(--red); }
+.journey-map__label { font-family: var(--serif); font-style: italic; font-size: 16px; fill: var(--espresso); }
+
+/* ============================================================
+   8 · FINALE
+   ============================================================ */
+.finale { background: var(--cream); padding: clamp(70px, 9vw, 130px) clamp(20px, 6vw, 48px); }
+.finale__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 80px); align-items: center; max-width: var(--maxw); margin: 0 auto;
+}
+.finale__photo { position: relative; border-radius: 4px; overflow: hidden; box-shadow: 0 26px 56px rgba(31,27,26,0.24); }
+.finale__photo img { width: 100%; height: clamp(380px, 46vw, 560px); object-fit: cover; }
+.finale__polaroid {
+  position: absolute; right: -8px; bottom: -8px; width: 42%;
+  margin: 0; padding: 8px 8px 14px; background: #fff; border-radius: 2px;
+  box-shadow: 0 16px 30px rgba(31,27,26,0.3); transform: rotate(4deg); overflow: visible;
+}
+.finale__polaroid img { width: 100%; height: auto; aspect-ratio: 4/3; border-radius: 1px; box-shadow: none; }
+.finale__copy h2 { margin: 6px 0 20px; color: var(--espresso); }
+.visit-info { margin: 26px 0 0; display: grid; gap: 14px; }
+.visit-info div { display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: baseline; border-top: 1px solid rgba(31,27,26,0.14); padding-top: 12px; }
+.visit-info dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); }
+.visit-info dd { color: var(--espresso); }
+.finale__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 30px; }
+.finale__cta .link-cta { margin-top: 0; }
+.proto-flag { margin-top: 26px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); opacity: 0.8; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-foot { background: var(--espresso); color: rgba(255,255,255,0.82); padding: 40px clamp(20px, 6vw, 48px); }
+.site-foot__inner { max-width: var(--maxw); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px 30px; align-items: center; justify-content: space-between; }
+.site-foot__mark { height: 38px; filter: brightness(0) invert(1); opacity: 0.9; }
+.site-foot nav { display: flex; gap: 18px; }
+.site-foot a { text-decoration-color: var(--gold); text-underline-offset: 5px; }
+
+/* ---- mountains silhouette (green) ---- */
+.mountains { position: absolute; top: 0; left: 0; width: 100%; height: clamp(110px, 14vw, 180px); z-index: 2; opacity: 0.5; }
+.mountains svg { width: 100%; height: 100%; }
+.mountains path { fill: rgba(255,255,255,0.12); }
+
+/* ============================================================
+   Reveal
+   ============================================================ */
+.reveal { opacity: 1; transform: none; transition: opacity 760ms ease, transform 760ms ease; }
+.journey-reveal-ready .reveal { opacity: 0; transform: translateY(24px); }
+.journey-reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  .intro, .band__grid, .finale__grid { grid-template-columns: 1fr; }
+  .band__grid--rev .band__copy { order: 0; }
+  .intro__photo { order: 2; }
+  .photo-stack { min-height: 420px; }
+  .finale__polaroid { width: 38%; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .photo-stack__main { width: 82%; }
+  .photo-stack__a { width: 52%; }
+  .seal { width: 92px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
