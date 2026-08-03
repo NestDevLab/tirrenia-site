@@ -158,19 +158,39 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
 /* ---- Route thread (continuous dotted line through the page) ---- */
 .route {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 1; pointer-events: none;
+  z-index: 0; pointer-events: none;
 }
 .route path {
   fill: none; stroke: var(--gold); stroke-width: 0.5; vector-effect: non-scaling-stroke;
-  stroke-dasharray: 2 6; stroke-linecap: round; opacity: 0.85;
+  stroke-dasharray: 2 6; stroke-linecap: round; opacity: 0.62;
 }
-.band .route path { stroke: rgba(255, 255, 255, 0.7); }
+.band .route path { stroke: rgba(255, 255, 255, 0.52); }
 .marker {
-  position: absolute; z-index: 2; width: clamp(34px, 4vw, 46px); color: var(--terracotta);
+  position: absolute; z-index: 1; width: clamp(30px, 3.4vw, 42px); color: var(--terracotta);
+  pointer-events: none;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
 .marker svg { width: 100%; height: auto; display: block; }
 .marker--light { color: var(--lemon); }
+.marker--traveler {
+  top: 0; left: 50%; opacity: 0;
+  animation: journey-marker-travel 13s linear infinite;
+  will-change: top, left, opacity, transform;
+}
+.marker--phase-a { animation-delay: -1s; }
+.marker--phase-b { animation-delay: -7.5s; }
+.marker--phase-c { animation-delay: -4.25s; }
+
+@keyframes journey-marker-travel {
+  0% { top: 0; left: 50%; opacity: 0; transform: translate(-50%, -50%) rotate(-4deg) scale(0.84); }
+  8% { opacity: 0.58; }
+  20% { top: 20%; left: 44%; transform: translate(-50%, -50%) rotate(2deg) scale(1); }
+  40% { top: 40%; left: 56%; transform: translate(-50%, -50%) rotate(-2deg) scale(0.96); }
+  58% { top: 58%; left: 48%; transform: translate(-50%, -50%) rotate(3deg) scale(1); }
+  74% { top: 74%; left: 44%; transform: translate(-50%, -50%) rotate(-3deg) scale(0.96); }
+  88% { top: 88%; left: 56%; opacity: 0.58; transform: translate(-50%, -50%) rotate(2deg) scale(1); }
+  100% { top: 100%; left: 50%; opacity: 0; transform: translate(-50%, -50%) rotate(-4deg) scale(0.84); }
+}
 
 /* ---- Torn paper edges (whitewash tearing over the colour blocks) ---- */
 .torn { position: absolute; left: 0; width: 100%; height: clamp(22px, 3vw, 40px); z-index: 3; fill: var(--whitewash); display: block; }
@@ -190,7 +210,7 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
 .intro__copy { position: relative; z-index: 4; }
 .intro__copy h1 { margin: 6px 0 22px; color: var(--espresso); }
 .intro__photo { position: relative; z-index: 2; border-radius: 4px; overflow: hidden; box-shadow: 0 26px 56px rgba(31,27,26,0.22); }
-.intro__photo img { width: 100%; height: clamp(360px, 46vw, 560px); object-fit: cover; }
+.intro__photo img { width: 100%; height: clamp(360px, 46vw, 560px); object-fit: cover; object-position: 58% 38%; }
 .route--intro path { stroke: var(--gold); }
 
 /* ============================================================
@@ -208,6 +228,10 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
   max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 6vw, 48px);
 }
 .band__grid--rev .band__copy { order: 2; }
+.band__grid--copy { grid-template-columns: minmax(0, 720px); justify-content: center; }
+.band__grid--copy .band__copy { text-align: center; }
+.band__grid--copy .band__copy p { margin-inline: auto; max-width: 60ch; }
+.band__grid--copy .taglist { justify-content: center; }
 .band__copy h2 { margin: 6px 0 20px; }
 .band__copy p { color: rgba(255,255,255,0.92); max-width: 46ch; }
 
@@ -227,7 +251,7 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
 
 /* full-bleed photo strip inside a band (sea) */
 .band__bleed { position: relative; z-index: 4; max-width: var(--maxw); margin: 0 auto clamp(36px, 5vw, 60px); padding: 0 clamp(20px, 6vw, 48px); }
-.band__bleed img { width: 100%; height: clamp(240px, 32vw, 420px); object-fit: cover; border-radius: 4px; box-shadow: 0 24px 50px rgba(0,0,0,0.32); }
+.band__bleed img { width: 100%; height: clamp(240px, 32vw, 420px); object-fit: cover; object-position: center 62%; border-radius: 4px; box-shadow: 0 24px 50px rgba(0,0,0,0.32); }
 
 /* photo stack (overlapping editorial collage) */
 .photo-stack { position: relative; min-height: clamp(380px, 46vw, 560px); }
@@ -236,17 +260,23 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
 .photo-stack__main { top: 0; left: 4%; width: 74%; aspect-ratio: 4/3.1; z-index: 1; }
 .photo-stack__a { right: 0; top: 32%; width: 46%; aspect-ratio: 1; z-index: 3; transform: rotate(3deg); border: 4px solid #fff; }
 .photo-stack__b { left: 0; bottom: 0; width: 44%; aspect-ratio: 3/2.4; z-index: 2; transform: rotate(-3deg); border: 4px solid #fff; }
+.photo-stack--food .photo-stack__main { left: 0; width: 82%; }
+.photo-stack--food .photo-stack__main img { object-position: center 72%; }
+.photo-stack--food .photo-stack__b { right: 0; left: auto; width: 48%; }
+.photo-stack--food .photo-stack__b img { object-position: center 55%; }
 .photo-stack--shelf .photo-stack__main { width: 70%; aspect-ratio: 3/3.4; }
-.photo-stack--shelf .photo-stack__a { top: 44%; width: 50%; aspect-ratio: 4/3; }
+.photo-stack--shelf .photo-stack__main--solo { left: 10%; width: 80%; }
+.photo-stack--shelf .photo-stack__main--solo img { object-position: center 45%; }
 
-/* Caffè al banco seal */
-.seal {
-  display: grid; place-items: center; width: 108px; aspect-ratio: 1; margin-top: 28px;
-  border-radius: 50%; border: 2px dashed rgba(255,255,255,0.7);
-  background: rgba(0,0,0,0.18); color: #fff; text-align: center;
-  font-family: var(--serif); font-style: italic; font-size: 0.95rem; line-height: 1.1;
-  transform: rotate(-8deg);
+/* Official Caffè al banco mark */
+.caffe-logo {
+  display: grid; place-items: center; width: 142px; margin-top: 28px; padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.42); border-radius: 50%;
+  background: rgba(243,235,222,0.96);
+  box-shadow: 0 12px 26px rgba(75,16,18,0.24);
+  transform: rotate(-4deg);
 }
+.caffe-logo img { width: 100%; height: auto; }
 
 /* ============================================================
    Neutral passes
@@ -256,7 +286,7 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
   padding: clamp(58px, 8vw, 104px) clamp(20px, 6vw, 48px);
   background: var(--milk);
 }
-.pass__text { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--espresso); }
+.pass__text { position: relative; z-index: 4; font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--espresso); }
 .pass__text em { font-style: italic; color: var(--terracotta); }
 .route--pass path, .route--passwave path { stroke: var(--gold); }
 
@@ -276,13 +306,13 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
   gap: clamp(32px, 6vw, 80px); align-items: center; max-width: var(--maxw); margin: 0 auto;
 }
 .finale__photo { position: relative; border-radius: 4px; overflow: hidden; box-shadow: 0 26px 56px rgba(31,27,26,0.24); }
-.finale__photo img { width: 100%; height: clamp(380px, 46vw, 560px); object-fit: cover; }
+.finale__photo > img { width: 100%; height: clamp(380px, 46vw, 560px); object-fit: cover; object-position: center 46%; }
 .finale__polaroid {
   position: absolute; right: -8px; bottom: -8px; width: 42%;
   margin: 0; padding: 8px 8px 14px; background: #fff; border-radius: 2px;
   box-shadow: 0 16px 30px rgba(31,27,26,0.3); transform: rotate(4deg); overflow: visible;
 }
-.finale__polaroid img { width: 100%; height: auto; aspect-ratio: 4/3; border-radius: 1px; box-shadow: none; }
+.finale__polaroid img { width: 100%; height: auto; aspect-ratio: 4/3; border-radius: 1px; box-shadow: none; object-fit: cover; object-position: center 66%; }
 .finale__copy h2 { margin: 6px 0 20px; color: var(--espresso); }
 .visit-info { margin: 26px 0 0; display: grid; gap: 14px; }
 .visit-info div { display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: baseline; border-top: 1px solid rgba(31,27,26,0.14); padding-top: 12px; }
@@ -290,7 +320,6 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
 .visit-info dd { color: var(--espresso); }
 .finale__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 30px; }
 .finale__cta .link-cta { margin-top: 0; }
-.proto-flag { margin-top: 26px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); opacity: 0.8; }
 
 /* ============================================================
    Footer
@@ -300,6 +329,41 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
 .site-foot__mark { height: 38px; filter: brightness(0) invert(1); opacity: 0.9; }
 .site-foot nav { display: flex; gap: 18px; }
 .site-foot a { text-decoration-color: var(--gold); text-underline-offset: 5px; }
+
+/* ---- Tirrenia Bot entry point ---- */
+.tirrenia-bot-launcher {
+  appearance: none;
+  position: fixed;
+  z-index: 1200;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 8px;
+  border: 1px solid rgba(255,255,255,0.54);
+  border-radius: 999px;
+  background: rgba(11,64,92,0.95);
+  color: #fff;
+  box-shadow: 0 16px 36px rgba(31,27,26,0.3);
+  font-size: 0.82rem;
+  font-family: inherit;
+  font-weight: 750;
+  line-height: 1.15;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.tirrenia-bot-launcher:hover { transform: translateY(-2px); box-shadow: 0 20px 42px rgba(31,27,26,0.34); }
+.tirrenia-bot-launcher:focus-visible { outline: 3px solid rgba(234,203,47,0.78); outline-offset: 4px; }
+.tirrenia-bot-launcher img {
+  width: 44px;
+  height: 44px;
+  border: 2px solid rgba(255,255,255,0.76);
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 /* ---- mountains silhouette (green) ---- */
 .mountains { position: absolute; top: 0; left: 0; width: 100%; height: clamp(110px, 14vw, 180px); z-index: 2; opacity: 0.5; }
@@ -325,10 +389,23 @@ h2 { font-size: clamp(2.3rem, 5vw, 4.4rem); }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
+  .marker { width: 24px; }
   .photo-stack__main { width: 82%; }
   .photo-stack__a { width: 52%; }
-  .seal { width: 92px; }
+  .photo-stack--shelf .photo-stack__main--solo { width: 88%; }
+  .caffe-logo { width: 124px; }
+  .tirrenia-bot-launcher {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    max-width: calc(100vw - 24px);
+    padding-right: 14px;
+  }
+  .tirrenia-bot-launcher img { width: 40px; height: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .marker--traveler { animation: none !important; opacity: 0.5; transform: translate(-50%, -50%); }
+  .marker--phase-a { top: 28%; left: 50%; }
+  .marker--phase-b { top: 76%; left: 45%; }
+  .marker--phase-c { top: 52%; left: 51%; }
 }
