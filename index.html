@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0; url=/nl/" />
+    <title>Tirrenia</title>
+    <script>
+      (() => {
+        const localeMap = {
+          nl: "nl",
+          nl_nl: "nl",
+          en: "en",
+          en_us: "en",
+          it: "it",
+          it_it: "it",
+        };
+        const normalize = (value) => {
+          if (!value) return null;
+          const normalized = value.toLowerCase().replace("-", "_");
+          return localeMap[normalized] || localeMap[normalized.split("_")[0]] || null;
+        };
+        const languageCookie = document.cookie
+          .split("; ")
+          .find((cookie) => cookie.startsWith("frontend_lang="));
+        const cookieValue = languageCookie
+          ? decodeURIComponent(languageCookie.slice("frontend_lang=".length))
+          : null;
+        const candidates = [cookieValue, ...(navigator.languages || []), navigator.language];
+        const locale = candidates.map(normalize).find(Boolean) || "nl";
+
+        window.location.replace(`/${locale}/${window.location.search}${window.location.hash}`);
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a href="/nl/">Open Tirrenia</a></p>
+  </body>
+</html>
