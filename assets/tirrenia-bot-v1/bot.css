@@ -117,6 +117,7 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
 .bot-chat__message > div { padding: 13px 16px; border-radius: 18px 18px 18px 4px; background: var(--bot-cream); color: var(--bot-ink); }
 .bot-chat__message strong { display: block; margin-bottom: 5px; color: var(--bot-blue-deep); font-size: 0.72rem; }
 .bot-chat__message p { margin: 0; white-space: pre-wrap; font-size: 0.94rem; line-height: 1.5; }
+.bot-chat__message p + p { margin-top: 8px; }
 .bot-chat__reply { display: grid; gap: 8px; }
 .bot-chat__reply strong { display: inline; margin: 0; color: inherit; font-size: inherit; }
 .bot-chat__reply code { padding: 1px 4px; border-radius: 4px; background: rgba(15,93,132,0.1); font-size: 0.88em; }
@@ -140,6 +141,17 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   text-align: left;
 }
 .bot-chat__suggestions button:hover { border-color: var(--bot-blue); background: white; }
+.bot-chat__inline-choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.bot-chat__inline-choices button,
+.bot-chat__retry {
+  border: 1px solid rgba(15,93,132,0.24); border-radius: 999px; padding: 9px 13px; background: #fff; color: var(--bot-blue-deep); cursor: pointer; font: 750 0.78rem/1.2 var(--bot-sans);
+}
+.bot-chat__inline-choices button:hover,
+.bot-chat__retry:hover { border-color: var(--bot-blue); box-shadow: 0 5px 14px rgba(15,93,132,0.12); }
+.bot-chat__mode { display: flex; gap: 6px; padding: 10px 22px 0; border-top: 1px solid rgba(15,93,132,0.1); }
+.bot-chat__mode button { border: 0; border-radius: 999px; padding: 8px 12px; background: transparent; color: var(--bot-muted); cursor: pointer; font: 750 0.75rem/1 var(--bot-sans); }
+.bot-chat__mode button.is-active { background: rgba(15,93,132,0.1); color: var(--bot-blue-deep); }
+.bot-chat__mode button:disabled { opacity: 0.4; cursor: default; }
 .bot-chat__composer { padding: 18px 22px 22px; border-top: 1px solid rgba(15,93,132,0.12); }
 .bot-chat__composer > label { display: block; margin-bottom: 8px; color: var(--bot-muted); font-size: 0.76rem; font-weight: 700; }
 .bot-chat__composer > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; }
@@ -173,6 +185,25 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   font-size: 0.68rem;
   line-height: 1.4;
 }
+.bot-chat__sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.bot-result { display: grid; gap: 12px; margin-top: 14px; }
+.bot-product { display: grid; grid-template-columns: 112px minmax(0,1fr); gap: 12px; overflow: hidden; border: 1px solid rgba(15,93,132,0.16); border-radius: 17px; background: rgba(255,255,255,0.86); }
+.bot-product > img { width: 112px; height: 100%; min-height: 160px; object-fit: cover; }
+.bot-product > div { padding: 13px 13px 13px 0; }
+.bot-product span { color: var(--bot-red); font: 800 0.66rem/1 var(--bot-sans); letter-spacing: 0.08em; text-transform: uppercase; }
+.bot-product h3 { margin: 5px 0 2px; font: 600 1.2rem/1.1 var(--bot-serif); }
+.bot-product strong { color: var(--bot-blue-deep); }
+.bot-product p { margin-top: 7px; font-size: 0.78rem; }
+.bot-product small { display: block; margin-top: 7px; color: #26734b; font-weight: 750; }
+.bot-product button { margin-top: 10px; border: 0; border-radius: 10px; padding: 9px 11px; background: var(--bot-blue); color: #fff; cursor: pointer; font-weight: 800; }
+.bot-result__safety { color: var(--bot-muted); font-size: 0.68rem !important; }
+.bot-counter { position: fixed; z-index: 1700; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(11,20,25,0.76); }
+.bot-counter > div { width: min(520px,100%); overflow: hidden; border-radius: 28px; background: #fff; text-align: center; box-shadow: 0 35px 100px rgba(0,0,0,0.35); }
+.bot-counter img { width: 100%; max-height: 44dvh; object-fit: cover; }
+.bot-counter p { margin: 22px 20px 5px; color: var(--bot-red); font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.bot-counter h2 { margin: 0 20px 8px; font: 600 clamp(2rem,7vw,3.6rem)/1 var(--bot-serif); }
+.bot-counter strong { display: block; color: var(--bot-blue-deep); font-size: 1.25rem; }
+.bot-counter button { margin: 22px; border: 0; border-radius: 14px; padding: 12px 22px; background: var(--bot-ink); color: #fff; cursor: pointer; font-weight: 800; }
 .bot-chat button:focus-visible,
 .bot-chat textarea:focus-visible { outline: 3px solid rgba(15,93,132,0.4); outline-offset: 3px; }
 
@@ -204,7 +235,8 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   align-items: flex-start;
   justify-content: space-between;
   gap: 18px;
-  padding: 20px 20px 18px;
+  min-height: 48px;
+  padding: 8px 10px;
   background:
     radial-gradient(circle at 12% 12%, rgba(201,166,78,0.16), transparent 42%),
     linear-gradient(145deg, #faf7ef, var(--bot-cream));
@@ -240,6 +272,7 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   color: var(--bot-blue-deep);
   cursor: pointer;
   font: 400 1.65rem/1 var(--bot-sans);
+  margin-left: auto;
 }
 .bot-modal .bot-chat {
   min-height: 0;
@@ -283,6 +316,7 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   .bot-chat__messages { padding: 18px 14px; }
   .bot-chat__message { max-width: 94%; }
   .bot-chat__suggestions { padding: 0 14px 16px; }
+  .bot-chat__mode { padding-left: 14px; padding-right: 14px; overflow-x: auto; }
   .bot-chat__suggestions > div { display: grid; }
   .bot-chat__composer { padding: 14px; }
   .bot-chat__composer > div { grid-template-columns: 1fr; }
@@ -296,6 +330,8 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   .bot-modal .bot-chat { height: auto; grid-template-rows: auto minmax(160px, 1fr) auto auto; border-radius: 0; }
   .bot-modal .bot-chat__messages { padding-top: 14px; padding-bottom: 14px; }
   .bot-modal__footer { padding: 12px 16px 14px; }
+  .bot-product { grid-template-columns: 88px minmax(0,1fr); }
+  .bot-product > img { width: 88px; min-height: 150px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
