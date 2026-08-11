@@ -76,7 +76,7 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
 .bot-chat {
   display: grid;
   min-height: min(720px, calc(100dvh - 154px));
-  grid-template-rows: auto minmax(260px, 1fr) auto auto;
+  grid-template-rows: auto minmax(260px, 1fr) auto;
   overflow: hidden;
   border: 1px solid rgba(15,93,132,0.16);
   border-radius: 26px;
@@ -152,10 +152,6 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
 }
 .bot-chat__inline-choices button:hover,
 .bot-chat__retry:hover { border-color: var(--bot-blue); box-shadow: 0 5px 14px rgba(15,93,132,0.12); }
-.bot-chat__mode { display: flex; gap: 6px; padding: 10px 22px 0; border-top: 1px solid rgba(15,93,132,0.1); }
-.bot-chat__mode button { border: 0; border-radius: 999px; padding: 8px 12px; background: transparent; color: var(--bot-muted); cursor: pointer; font: 750 0.75rem/1 var(--bot-sans); }
-.bot-chat__mode button.is-active { background: rgba(15,93,132,0.1); color: var(--bot-blue-deep); }
-.bot-chat__mode button:disabled { opacity: 0.4; cursor: default; }
 .bot-chat__composer { padding: 18px 22px 22px; border-top: 1px solid rgba(15,93,132,0.12); }
 .bot-chat__composer > label { display: block; margin-bottom: 8px; color: var(--bot-muted); font-size: 0.76rem; font-weight: 700; }
 .bot-chat__composer > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; }
@@ -281,7 +277,7 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
 .bot-modal .bot-chat {
   min-height: 0;
   height: min(590px, 62dvh);
-  grid-template-rows: auto minmax(120px, 1fr) auto auto;
+  grid-template-rows: auto minmax(120px, 1fr) auto;
   border: 0;
   border-top: 1px solid rgba(15,93,132,0.12);
   border-radius: 0;
@@ -315,9 +311,10 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
 
 @media (max-width: 560px) {
   .bot-page { width: min(100% - 24px, 840px); padding-top: 24px; }
-  .bot-chat { min-height: calc(100dvh - 24px); grid-template-rows: auto minmax(0, 1fr) auto auto; border-radius: 20px; }
+  .bot-chat { min-height: calc(100dvh - 24px); grid-template-rows: auto minmax(0, 1fr) auto; border-radius: 20px; }
   .bot-chat__header { min-height: 58px; padding: 8px 10px 8px 16px; }
-  .bot-chat__desktop-reset { display: none; }
+  .bot-chat__desktop-reset,
+  .bot-chat__desktop-alcohol { display: none; }
   .bot-chat__mobile-close {
     display: grid;
     width: 42px;
@@ -336,7 +333,6 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   .bot-chat__inline-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bot-chat__inline-choices button { min-height: 44px; padding: 8px 10px; }
   .bot-chat__suggestions { padding: 0 14px 16px; }
-  .bot-chat__mode { display: none; }
   .bot-chat__suggestions > div { display: grid; }
   .bot-chat__composer { position: relative; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); }
   .bot-chat__composer > label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -397,7 +393,7 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
   .bot-modal__identity { grid-template-columns: 52px minmax(0, 1fr); gap: 11px; }
   .bot-modal__identity > img { width: 52px; height: 52px; }
   .bot-modal__identity p { font-size: 0.78rem; }
-  .bot-modal .bot-chat { height: 100%; min-height: 100%; grid-template-rows: auto minmax(0, 1fr) auto auto; border-top: 0; border-radius: 0; }
+  .bot-modal .bot-chat { height: 100%; min-height: 100%; grid-template-rows: auto minmax(0, 1fr) auto; border-top: 0; border-radius: 0; }
   .bot-product { grid-template-columns: 88px minmax(0,1fr); }
   .bot-product > img { width: 88px; min-height: 150px; }
 }
