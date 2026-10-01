@@ -1,0 +1,658 @@
+@font-face { font-family: TirreniaHand; src: url('./caveat.ttf') format('truetype'); font-weight: 400 700; font-display: swap; }
+/* Brand-specific composition of Joseph's four supplied visual references. */
+.rv-shell { --rv-paper: color-mix(in srgb, var(--tirrenia-whitewash) 26%, white); --rv-sand: color-mix(in srgb, var(--tirrenia-milk-cream) 78%, white); --rv-ink: var(--tirrenia-lava-black); --rv-muted: color-mix(in srgb, var(--tirrenia-vesuvian-stone-gray) 76%, white); --rv-blue: var(--tirrenia-capri-blue); --rv-green: color-mix(in srgb, var(--tirrenia-historic-sign-green) 80%, var(--tirrenia-capri-blue)); --rv-ocean: color-mix(in srgb, var(--tirrenia-capri-blue) 66%, var(--tirrenia-historic-sign-green)); --rv-dark-ocean: color-mix(in srgb, var(--rv-ocean) 75%, var(--tirrenia-lava-black)); --rv-accent: var(--tirrenia-vesuvian-terracotta); background: var(--rv-paper); color: var(--rv-ink); font: clamp(14px,1.18vw,18px)/1.45 Arial, sans-serif; }
+.rv-shell *, .rv-shell *::before, .rv-shell *::after { box-sizing: border-box; }
+.rv-shell button, .rv-shell input, .rv-shell select, .rv-shell textarea { font-family: inherit; }
+.rv-shell .tn-site { background: var(--rv-paper); }
+.rv-shell .tn-wrap { width: min(1280px,89%); margin-inline: auto; }
+.rv-shell .tn-site h1, .rv-shell .tn-site h2, .rv-shell .tn-site h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.055em; color: inherit; }
+.rv-shell .tn-site h1 { font-size: clamp(54px,6.15vw,94px); line-height: .98; margin: 0 0 24px; }
+.rv-shell .tn-site h2 { font-size: clamp(35px,3.85vw,60px); line-height: 1.02; margin: 0 0 18px; }
+.rv-shell .tn-site h3 { font-size: clamp(24px,2.05vw,33px); line-height: 1.08; }
+.rv-shell .tn-site p { line-height: 1.45; }
+.rv-shell .tn-kicker { font-family: Arial,sans-serif; font-size: clamp(9px,.72vw,11px); letter-spacing: .23em; font-weight: 700; color: var(--rv-blue); margin-bottom: 15px; }
+.rv-shell .tn-action { min-height: 43px; border-radius: 99px; padding: 10px 23px; gap: 15px; font-size: clamp(11px,.86vw,14px); font-weight: 600; border-color: var(--rv-blue); background: var(--rv-blue); box-shadow: 0 4px 14px color-mix(in srgb,var(--rv-blue) 10%,transparent); }
+.rv-shell .tn-action-quiet { color: var(--rv-blue) !important; background: transparent; box-shadow: none; }
+.rv-shell .tn-action .rv-line-icon { width: 20px; height: 20px; }
+.rv-shell .tn-action:hover { transform: translateY(-1px); }
+.rv-shell .tn-actions { gap: 15px; }
+.rv-photo { display: block; width: 100%; height: 100%; overflow: hidden; }
+.rv-photo-real { object-fit: cover; }
+.rv-header { position: relative; z-index: 30; height: clamp(68px,6.6vw,96px); background: var(--rv-paper); border-bottom: 1px solid color-mix(in srgb,var(--tirrenia-sand-beige) 18%,transparent); }
+.rv-header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 38px; }
+.rv-logo { display: block; width: clamp(86px,9vw,124px); flex-shrink: 0; }
+.rv-logo img { display: block; width: 100%; height: auto; max-height: 70px; }
+.rv-header nav { display: flex; align-items: center; gap: clamp(22px,2.6vw,40px); margin-left: auto; }
+.rv-header nav a { font: 14px/1.2 Georgia,serif; text-decoration: none; padding-block: 8px; color: var(--rv-ink); }
+.rv-header nav a[aria-current="page"] { color: var(--rv-blue); border-bottom: 1px solid color-mix(in srgb,var(--rv-blue) 45%,transparent); }
+.rv-header-actions { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+.rv-language { display: grid; place-items: center; min-width: 51px; min-height: 32px; border-radius: 99px; border: 1px solid color-mix(in srgb,var(--tirrenia-sand-beige) 36%,transparent); font-size: 11px; }
+.rv-menu-toggle { display: none; background: transparent; border: 0; font-size: 28px; color: var(--rv-blue); }
+.rv-page-club .rv-header-chat, .rv-page-partnerships .rv-header-chat { display: none; }
+.rv-page-club .rv-header nav, .rv-page-partnerships .rv-header nav { margin-left: 11%; margin-right: auto; }
+.rv-page-club .rv-header-actions, .rv-page-partnerships .rv-header-actions { margin-left: 0; }
+.rv-header-sale .rv-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+.rv-header-sale nav { margin-left: 0; gap: 22px; }
+.rv-header-sale nav a { font-size: 12px; }
+.rv-header-sale .rv-language { display: none; }
+.rv-hero { position: relative; min-height: clamp(470px,36vw,570px); isolation: isolate; }
+.rv-hero-media { position: absolute; inset: 0 0 0 auto; width: 56%; height: 100%; z-index: -2; }
+.rv-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,var(--rv-paper) 0%,var(--rv-paper) 39%,color-mix(in srgb,var(--rv-paper) 96%,transparent) 45%,transparent 61%); }
+.rv-hero-inner { padding-block: 32px 54px; min-height: inherit; display: flex; align-items: center; }
+.rv-hero-copy { width: 49%; }
+.rv-hero-copy > p:not(.tn-kicker) { max-width: 525px; margin: 22px 0 26px; color: var(--rv-muted); }
+.rv-home-hero { min-height: clamp(560px,52.5vw,790px); }
+.rv-home-hero .rv-hero-copy { width: 45%; }
+.rv-home-hero h1 { font-size: clamp(54px,5.55vw,86px) !important; }
+.rv-home-hero .rv-hero-media { width: 57%; }
+.rv-home-hero .rv-hero-copy > p { max-width: 450px; }
+.rv-home-hero::before { background: linear-gradient(90deg,var(--rv-paper) 0%,var(--rv-paper) 38%,color-mix(in srgb,var(--rv-paper) 85%,transparent) 44%,transparent 55%); }
+.rv-location { position: relative; display: flex; align-items: center; gap: 13px; margin-top: 38px; min-height: 50px; color: var(--rv-blue); }
+.rv-location > .rv-line-icon { width: 25px; height: 30px; }
+.rv-location span { font: 23px/1 TirreniaHand,cursive; }
+.rv-location small { display: block; margin-top: 4px; font-size: 10px; letter-spacing: .08em; color: var(--rv-muted); }
+.rv-trail { position: absolute; width: 230px; height: 70px; left: 160px; top: -16px; opacity: .5; fill: none; stroke: var(--rv-blue); stroke-dasharray: 3 7; }
+.rv-wave { position: absolute; left: -1px; width: calc(100% + 2px); height: clamp(20px,2.65vw,42px); z-index: 3; pointer-events: none; fill: var(--rv-paper); }
+.rv-wave-bottom { bottom: -1px; }
+.rv-wave-top { top: -1px; transform: rotate(180deg); }
+.rv-home-hero > .rv-wave { fill: var(--rv-sand); }
+.rv-handnote { display: block; color: var(--rv-accent); font: 400 clamp(22px,2.1vw,32px)/.97 TirreniaHand,cursive; letter-spacing: .015em; transform: rotate(-9deg); text-align: center; }
+.rv-handnote svg { display: block; width: 49px; height: 15px; margin: 9px auto 0; fill: none; stroke: currentColor; stroke-width: 2; }
+.rv-line-icon { width: 50px; height: 50px; flex-shrink: 0; }
+.rv-shell .tn-section-heading { gap: 45px; align-items: center; margin-bottom: 28px; }
+.rv-shell .tn-section-heading > p { max-width: 510px; color: var(--rv-muted); font-size: 1em; }
+.rv-shell .tn-section-heading .rv-handnote { flex-shrink: 0; width: 150px; }
+.rv-home-choices { position: relative; background: var(--rv-sand); padding-block: 58px 90px; }
+.rv-shell .tn-center { text-align: center; }
+.rv-shell .tn-center h2 { margin-bottom: 10px; }
+.rv-shell .tn-center p:last-child { max-width: none; margin: 0; }
+.rv-shell .tn-card-grid { gap: 20px; margin-top: 35px; }
+.rv-shell .tn-photo-card { padding: 13px 13px 0; border-radius: 3px; background: var(--rv-paper); box-shadow: 0 10px 25px color-mix(in srgb,var(--rv-ink) 4%,transparent); }
+.rv-shell .tn-photo-card > .rv-photo { height: auto; aspect-ratio: 1.27; }
+.rv-shell .tn-photo-card > div { padding: 19px 9px 20px; }
+.rv-shell .tn-photo-card h3 { display: flex; align-items: center; justify-content: space-between; margin: 0 0 16px; }
+.rv-shell .tn-photo-card h3 span { font: 18px Arial,sans-serif; color: var(--rv-accent); }
+.rv-shell .tn-photo-card p { font-size: .97em; min-height: 100px; margin: 0 0 16px; }
+.rv-tags { display: flex; justify-content: space-between; gap: 8px; }
+.rv-tags span { padding: 4px 7px; font-size: 9px; letter-spacing: .11em; text-transform: uppercase; font-weight: 700; background: color-mix(in srgb,var(--rv-sand) 55%,transparent); border-radius: 4px; }
+.rv-home-story, .rv-home-food { position: relative; isolation: isolate; min-height: clamp(400px,40vw,590px); display: flex; align-items: center; padding-block: 75px; }
+.rv-full-photo { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.rv-home-story > .rv-full-photo, .rv-home-food > .rv-full-photo { left: 48%; width: 52%; }
+.rv-home-story::before, .rv-home-food::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,var(--rv-paper) 42%,transparent 70%); }
+.rv-half-copy { width: 47%; max-width: 550px; }
+.rv-half-copy > p:not(.tn-kicker) { max-width: 470px; color: var(--rv-muted); }
+.rv-half-copy .rv-handnote { width: fit-content; margin: 28px 0 0 37%; }
+.rv-home-story .tn-kicker, .rv-home-food .tn-kicker { color: var(--rv-accent); }
+.rv-home-story .rv-wave { fill: var(--rv-dark-ocean); }
+.rv-shared-journey { position: relative; min-height: clamp(245px,26vw,385px); background: var(--rv-dark-ocean); color: var(--rv-paper); display: flex; align-items: center; padding-block: 55px; }
+.rv-shared-journey .tn-wrap > div { margin-left: 55%; }
+.rv-shared-journey h2 { font-size: clamp(36px,3.8vw,58px) !important; }
+.rv-shared-journey p { max-width: 490px; color: color-mix(in srgb,var(--rv-paper) 78%,transparent); }
+.rv-ribbon { position: absolute; left: 0; top: 5%; width: 57%; height: 90%; mask-image: linear-gradient(90deg,black 70%,transparent),linear-gradient(0deg,transparent,black 18%,black 85%,transparent); mask-composite: intersect; }
+.rv-home-food { min-height: clamp(400px,41vw,600px); }
+.rv-home-food > .rv-full-photo { left: 43%; width: 57%; }
+.rv-home-food .rv-wave { fill: var(--rv-sand); }
+.rv-home-conversation { background: var(--rv-sand); padding-block: 40px 65px; }
+.rv-home-conversation .tn-wrap { width: min(1440px,100%); display: grid; grid-template-columns: .9fr 1fr .3fr; gap: 45px; align-items: center; }
+.rv-home-conversation .rv-photo { height: 390px; border-radius: 0 15px 15px 0; }
+.rv-home-conversation .rv-handnote { margin-right: 35px; }
+.rv-home-conversation p:not(.tn-kicker) { max-width: 510px; color: var(--rv-muted); }
+.rv-club-intro { padding-block: 48px 58px; }
+.rv-club-intro > .tn-wrap { display: grid; grid-template-columns: 1.04fr 1.33fr .23fr; gap: 38px; align-items: center; }
+.rv-club-intro p:not(.tn-kicker) { color: var(--rv-muted); font-size: .94em; }
+.rv-shell .tn-pillar-grid { gap: 0; }
+.rv-shell .tn-pillar-grid article { border: 0; border-left: 1px dashed color-mix(in srgb,var(--tirrenia-sand-beige) 45%,transparent); background: transparent; padding: 8px 20px; text-align: center; min-height: 0; }
+.rv-shell .tn-pillar-grid article:first-child { border-left: 0; }
+.rv-shell .tn-pillar-grid .rv-line-icon { color: var(--tirrenia-dark-espresso); width: 60px; height: 60px; }
+.rv-shell .tn-pillar-grid h3 { font: 700 12px/1.3 Arial,sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--rv-blue); margin: 18px 0 20px; }
+.rv-shell .tn-pillar-grid p { font-size: .84em; }
+.rv-green-band { position: relative; padding-block: 55px 44px; background: radial-gradient(ellipse at top left,color-mix(in srgb,var(--rv-green) 85%,var(--tirrenia-emerald-green)),var(--rv-green) 70%); color: var(--rv-paper); }
+.rv-green-band .tn-kicker { color: var(--rv-paper); }
+.rv-green-band .tn-action-quiet { color: var(--rv-paper) !important; border-color: color-mix(in srgb,var(--rv-paper) 80%,transparent); background: color-mix(in srgb,var(--rv-blue) 65%,transparent); }
+.rv-green-band p:not(.tn-kicker) { color: color-mix(in srgb,var(--rv-paper) 87%,transparent); }
+.rv-club-food { display: grid; grid-template-columns: 1.18fr 1fr .95fr; gap: 24px; align-items: center; }
+.rv-club-food > div { padding-right: 50px; }
+.rv-club-food > .rv-photo { height: clamp(240px,25vw,370px); }
+.rv-club-food > .rv-photo:last-child { transform: rotate(-1deg); }
+.rv-club-how { padding-block: 40px 45px; }
+.rv-club-how .tn-wrap { display: grid; grid-template-columns: 1.15fr .95fr .2fr; gap: 35px; align-items: center; }
+.rv-club-how .rv-photo { height: clamp(185px,18.8vw,285px); }
+.rv-club-how h2 { font-size: clamp(33px,3.4vw,53px) !important; }
+.rv-small-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 26px; }
+.rv-small-steps article { display: flex; gap: 12px; align-items: start; }
+.rv-small-steps article > span, .rv-process article > span { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; border: 1px solid var(--rv-accent); border-radius: 50%; color: var(--rv-blue); font: 22px/1 Georgia,serif; }
+.rv-small-steps h3 { font: 600 12px/1.3 Arial,sans-serif !important; color: var(--rv-blue) !important; letter-spacing: 0 !important; margin: 7px 0 9px; }
+.rv-small-steps p { font-size: 12px; color: var(--rv-muted); margin: 0; }
+.rv-booking { position: relative; isolation: isolate; padding-block: 62px 58px; }
+.rv-sea-background { position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg,color-mix(in srgb,white 58%,transparent),color-mix(in srgb,white 75%,transparent)),url('/assets/tirrenia-journey-v1/img/coast.webp') center 62%/cover; }
+.rv-booking-grid { display: grid; grid-template-columns: .92fr 1fr 1.08fr; gap: 20px; align-items: center; }
+.rv-booking-copy { padding: 12px 22px 12px 45px; }
+.rv-booking-copy h2 { font-size: clamp(33px,3.15vw,49px) !important; }
+.rv-booking-copy p:not(.tn-kicker) { font-size: .91em; color: var(--rv-muted); }
+.rv-booking-copy .rv-handnote { margin: 24px 0 0 35%; }
+.rv-plan-card { background: var(--rv-paper); padding: 23px; border-radius: 12px; box-shadow: 0 7px 26px color-mix(in srgb,var(--rv-ocean) 13%,transparent); display: grid; gap: 19px; min-width: 0; }
+.rv-plan-caption { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 9px; background: var(--rv-blue); color: white; font-size: 13px; }
+.rv-plan-caption .rv-line-icon { width: 19px; height: 19px; }
+.rv-plan-card label { display: grid; gap: 7px; color: var(--rv-blue); font-size: 12px; min-width: 0; }
+.rv-plan-card :is(input,select) { min-width: 0; width: 100%; min-height: 39px; border: 1px solid color-mix(in srgb,var(--rv-blue) 17%,white); border-radius: 6px; padding: 8px; background: white; color: var(--rv-ink); font-size: 12px; }
+.rv-plan-card .tn-form-row { gap: 13px; }
+.rv-plan-selection { font-size: 11px; margin: 0; color: var(--rv-muted); }
+.rv-plan-card .tn-hint { margin: 0; }
+.rv-booking .tn-seat-picker { display: block; margin: 0; min-width: 0; align-self: stretch; }
+.rv-booking .tn-seat-map-card { height: 100%; border: 0; border-radius: 12px; padding: 20px 15px; background: var(--rv-paper); box-shadow: 0 7px 26px color-mix(in srgb,var(--rv-ocean) 13%,transparent); display: flex; flex-direction: column; justify-content: space-between; }
+.rv-booking .tn-seat-map-head { display: block; }
+.rv-booking .tn-map-label { letter-spacing: .04em; font-size: 12px; text-transform: none; }
+.rv-booking .tn-seat-map-head p { font-size: 10px; }
+.rv-booking .tn-seat-pill { display: inline-block; margin-top: 10px; padding: 4px 8px; font-size: 10px; }
+.rv-booking .tn-zone-tabs { gap: 4px; margin: 12px 0; }
+.rv-booking .tn-zone-tabs button { padding: 5px 7px; font-size: 9px; border-radius: 4px; }
+.rv-booking .tn-floor { min-width: 0; width: 100%; aspect-ratio: 1.65; border-width: 4px; }
+.rv-booking .tn-floor-seat { width: 23px; height: 23px; font-size: 8px; border-width: 1px; background: var(--tirrenia-olive-green); }
+.rv-booking .tn-floor-seat.is-selected { background: var(--rv-blue); }
+.rv-booking .tn-floor-room { font-size: 6px; letter-spacing: 0; }
+.rv-booking .tn-floor-back, .rv-booking .tn-floor-shared, .rv-booking .tn-floor-lounge { padding-top: 3px; }
+.rv-booking .tn-floor-window, .rv-booking .tn-floor-entrance { font-size: 5px; }
+.rv-booking .tn-seat-detail { display: none; }
+.rv-booking .tn-hint { font-size: 10px; line-height: 1.35; margin-bottom: 0; }
+.rv-club-faq { padding-block: 50px 65px; }
+.rv-faq-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 35px; margin-top: 28px; }
+.rv-faq-row details { border-right: 1px dashed color-mix(in srgb,var(--tirrenia-sand-beige) 55%,transparent); padding-right: 20px; }
+.rv-faq-row details:last-child { border: 0; }
+.rv-faq-row summary { position: relative; list-style: none; font-size: 13px; padding-left: 32px; cursor: pointer; font-weight: 500; }
+.rv-faq-row summary::before { content: '+'; position: absolute; left: 0; top: -3px; width: 23px; height: 23px; border: 1px solid var(--rv-accent); border-radius: 50%; text-align: center; color: var(--rv-accent); font-size: 19px; line-height: 20px; }
+.rv-faq-row details[open] summary::before { content: '−'; }
+.rv-faq-row p { margin: 12px 0 0 32px; color: var(--rv-muted); font-size: 12px; }
+.rv-possibilities { padding-block: 40px 50px; }
+.rv-possibilities .tn-section-heading > div { min-width: 36%; }
+.rv-possibility-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 16px; }
+.rv-possibility-grid a { display: block; text-align: center; text-decoration: none; padding: 20px 17px; background: color-mix(in srgb,var(--rv-sand) 35%,transparent); border-radius: 9px; transition: background .2s; }
+.rv-possibility-grid a:hover { background: var(--rv-sand); }
+.rv-possibility-grid .rv-line-icon { color: var(--rv-accent); width: 49px; height: 49px; }
+.rv-possibility-grid h3 { font: 700 11px/1.4 Arial,sans-serif !important; color: var(--rv-blue) !important; letter-spacing: .17em !important; text-transform: uppercase; margin: 14px 0; }
+.rv-possibility-grid p { font-size: .84em; color: var(--rv-muted); margin: 0; }
+.rv-partner-space { display: grid; grid-template-columns: .83fr 1.17fr; gap: 62px; align-items: center; }
+.rv-partner-space > div:first-child { padding-left: 5%; }
+.rv-partner-collage { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: .8fr 1.2fr; gap: 15px; height: clamp(230px,24vw,365px); }
+.rv-partner-collage > .rv-photo:first-child { grid-row: 1 / 3; }
+.rv-partner-collage > .rv-photo:last-child { transform: rotate(-1deg); }
+.rv-partner-how { padding-block: 48px 40px; }
+.rv-partner-how .tn-section-heading > div { min-width: 37%; }
+.rv-process { display: grid; grid-template-columns: repeat(4,1fr); gap: 65px; text-align: center; margin-top: 30px; }
+.rv-process article { position: relative; }
+.rv-process article:not(:last-child)::after { content: ''; position: absolute; top: 23px; left: 65%; width: 94%; height: 16px; border-top: 1px dashed color-mix(in srgb,var(--rv-accent) 60%,transparent); border-radius: 50%; transform: rotate(3deg); }
+.rv-process article > span { margin: 0 auto 20px; color: var(--rv-accent); width: 42px; height: 42px; }
+.rv-process h3 { font: 700 10px/1.5 Arial,sans-serif !important; text-transform: uppercase; letter-spacing: .16em !important; color: var(--rv-blue) !important; margin-bottom: 12px; }
+.rv-process p { font-size: .9em; color: var(--rv-muted); }
+.rv-flexible { position: relative; isolation: isolate; padding-block: 50px; min-height: 270px; }
+.rv-flexible .rv-full-photo { width: 74%; left: 26%; }
+.rv-flexible::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,color-mix(in srgb,var(--rv-paper) 80%,transparent) 15%,color-mix(in srgb,var(--rv-paper) 60%,transparent) 37%,transparent 65%); }
+.rv-flexible .tn-wrap > div { max-width: 450px; padding-left: 5%; }
+.rv-flexible h2 { font-size: clamp(35px,3.4vw,53px) !important; }
+.rv-flexible p:not(.tn-kicker) { color: var(--rv-muted); font-size: .9em; }
+.rv-partner-contact { padding-block: 45px 55px; }
+.rv-partner-contact .tn-contact-grid { grid-template-columns: .75fr 1.25fr; gap: 80px; align-items: center; }
+.rv-partner-contact .tn-contact-grid > div:first-child { padding-left: 8%; }
+.rv-partner-contact .rv-handnote { margin: 30px 10% 0 25%; }
+.rv-shell .tn-form-card { border: 1px solid color-mix(in srgb,var(--tirrenia-sand-beige) 44%,transparent); border-radius: 12px; padding: 28px 34px; background: var(--rv-paper); box-shadow: 0 6px 25px color-mix(in srgb,var(--rv-ink) 7%,transparent); }
+.rv-partner-contact .tn-form-card > .tn-kicker, .rv-partner-contact .tn-form-card > h3 { display: none; }
+.rv-partner-contact .tn-form-card form { grid-template-columns: 1fr 1fr; margin-top: 16px; }
+.rv-partner-contact .tn-form-card form > label:nth-child(4), .rv-partner-contact .tn-form-card form > p { grid-column: 1 / -1; }
+.rv-shell .tn-form-card .tn-form-pending { font-size: 11px; padding: 9px 12px; background: var(--rv-sand); }
+.rv-shell .tn-form-card label { font-weight: 400; font-size: 11px; gap: 5px; }
+.rv-shell .tn-form-card :is(input,textarea,select) { border-radius: 4px; min-height: 34px; padding: 8px 10px; font-size: 12px; }
+.rv-shell .tn-form-card textarea { min-height: 78px; }
+.rv-shell .tn-form-card .tn-hint { font-size: 10px; }
+.rv-sale-hero { position: relative; padding-block: 30px 80px; }
+.rv-sale-hero .tn-wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 5%; position: relative; align-items: center; }
+.rv-sale-hero .tn-wrap > div:first-child { padding-right: 10px; }
+.rv-sale-hero h1 { font-size: clamp(48px,5.7vw,84px) !important; }
+.rv-sale-hero p:not(.tn-kicker) { max-width: 530px; color: var(--rv-muted); margin: 25px 0 32px; }
+.rv-sale-hero .tn-wrap > .rv-photo { height: clamp(450px,48vw,725px); width: 87%; }
+.rv-sale-hero .rv-handnote { position: absolute; right: -2%; top: 12%; font-size: 30px; }
+.rv-sale-hero small { display: block; margin-top: 60px; font-size: 9px; text-transform: uppercase; letter-spacing: .25em; color: var(--rv-muted); }
+.rv-sale-hero .rv-wave { fill: var(--rv-dark-ocean); }
+.rv-sale-intro { position: relative; color: var(--rv-paper); background: radial-gradient(ellipse at center,var(--rv-ocean),var(--rv-dark-ocean)); text-align: center; padding-block: 85px 92px; }
+.rv-sale-intro .tn-kicker { color: color-mix(in srgb,var(--rv-paper) 75%,transparent); }
+.rv-sale-intro h2 { font-size: clamp(38px,4.4vw,65px) !important; }
+.rv-sale-intro p:not(.tn-kicker) { max-width: 760px; margin: 28px auto; font: clamp(17px,1.5vw,24px)/1.35 Georgia,serif; }
+.rv-sale-intro small { display: block; margin-top: 35px; font-size: 9px; letter-spacing: .24em; text-transform: uppercase; }
+.rv-sale-foundation { padding-block: 60px 70px; }
+.rv-foundation-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 40px; }
+.rv-foundation-grid article { background: var(--rv-paper); box-shadow: 0 10px 22px color-mix(in srgb,var(--rv-ink) 7%,transparent); border-radius: 5px; overflow: hidden; }
+.rv-foundation-grid .rv-photo { height: auto; aspect-ratio: 1; }
+.rv-foundation-grid article > div { padding: 20px; }
+.rv-foundation-grid h3 { margin: 0 0 15px; font-size: clamp(23px,2vw,31px) !important; }
+.rv-foundation-grid p { color: var(--rv-muted); font-size: .9em; }
+.rv-sale-handover { position: relative; isolation: isolate; min-height: 510px; padding-block: 190px 65px; color: var(--rv-paper); display: flex; align-items: end; }
+.rv-sale-handover::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg,color-mix(in srgb,var(--rv-dark-ocean) 8%,transparent),color-mix(in srgb,var(--rv-dark-ocean) 76%,transparent)); z-index: -1; }
+.rv-sale-handover .tn-wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; }
+.rv-sale-handover .tn-kicker { color: var(--rv-paper); }
+.rv-sale-offer { padding-block: 65px; }
+.rv-sale-offer .tn-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 75px; align-items: center; }
+.rv-sale-offer article { padding: 35px; border: 1px solid color-mix(in srgb,var(--tirrenia-sand-beige) 50%,transparent); background: var(--rv-sand); }
+.rv-sale-offer article h3 { margin-bottom: 14px; }
+.rv-sale-offer article p { font-size: .9em; color: var(--rv-muted); }
+.rv-sale-offer hr { margin-block: 28px; opacity: .2; }
+.rv-shell .tn-proof { background: var(--rv-dark-ocean); }
+.rv-shell .tn-proof-grid strong { font-size: clamp(23px,2.4vw,36px); }
+.rv-shell .tn-blue { background: var(--rv-dark-ocean); }
+.rv-shell .tn-section { padding-block: 65px; }
+.rv-sale-contact { padding-block: 65px 75px; }
+.rv-sale-contact .tn-contact-grid { align-items: center; }
+.rv-sale-contact .rv-handnote { width: fit-content; margin-top: 30px; }
+.rv-sale-closing { position: relative; background: var(--rv-dark-ocean); color: var(--rv-paper); padding-block: 65px; }
+.rv-sale-closing .tn-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center; }
+.rv-sale-closing .tn-kicker { color: var(--rv-paper); }
+.rv-sale-closing p:not(.tn-kicker) { max-width: 480px; }
+.rv-sale-closing blockquote { font: italic clamp(23px,2.5vw,36px)/1.4 Georgia,serif; text-align: center; margin: 0; }
+.rv-sale-closing small { display: block; margin-top: 30px; font: 9px Arial,sans-serif; letter-spacing: .22em; text-transform: uppercase; }
+.rv-shell .tn-footer { position: relative; background: var(--tirrenia-dark-espresso); padding: 70px 0 28px; }
+.rv-page-home .tn-footer, .rv-page-opportunity .tn-footer { background: var(--rv-dark-ocean); }
+.rv-page-home .tn-footer > .rv-wave { fill: var(--rv-sand); }
+.rv-page-opportunity .tn-footer > .rv-wave { display: none; }
+.rv-shell .tn-footer-grid { grid-template-columns: 1.4fr .85fr 1fr 1fr; gap: 45px; }
+.rv-shell .tn-footer-grid > :not(:first-child) { border-left: 1px solid color-mix(in srgb,white 22%,transparent); padding-left: 35px; }
+.rv-shell .tn-footer-brand img { width: 110px; }
+.rv-shell .tn-footer-grid p, .rv-shell .tn-footer-grid a, .rv-shell .tn-footer-grid button { font-size: 13px; line-height: 1.4; }
+.rv-shell .tn-footer-grid strong { color: var(--rv-paper); font: 14px Georgia,serif; }
+.rv-shell .tn-footer-grid nav, .rv-shell .tn-footer-grid > div:last-child { gap: 8px; }
+.rv-shell .tn-footer-bottom { display: flex; justify-content: space-between; border-top: 1px solid color-mix(in srgb,white 20%,transparent); margin-top: 40px; padding-top: 23px; padding-bottom: 35px; }
+.rv-floating-actions { display: flex; position: fixed; z-index: 900; bottom: 22px; right: 22px; border: 1px solid var(--rv-blue); border-radius: 99px; background: var(--rv-blue); box-shadow: 0 5px 20px color-mix(in srgb,var(--rv-ink) 20%,transparent); padding: 3px; }
+.rv-floating-actions a, .rv-floating-actions button { display: inline-flex; gap: 10px; align-items: center; border: 0; font-size: 12px; font-weight: 600; padding: 12px 19px; background: transparent; color: white; text-decoration: none; cursor: pointer; }
+.rv-floating-actions button { background: var(--rv-paper); color: var(--rv-blue); border-radius: 99px; }
+.rv-floating-actions .rv-line-icon { width: 20px; height: 20px; }
+.rv-shell :is(button,a,input,select,textarea,summary):focus-visible { outline: 3px solid var(--tirrenia-antique-gold); outline-offset: 4px; }
+.rv-shell { width: 100%; max-width: none; min-height: 100dvh; }
+@media (max-width: 1100px) and (min-width: 761px) {
+  .rv-header nav { gap: 19px; }.rv-header nav a { font-size: 12px; }.rv-header-inner { gap: 20px; }.rv-header-chat { display: none !important; }
+  .rv-club-intro > .tn-wrap { grid-template-columns: 1fr 1.45fr; gap: 25px; }.rv-club-intro .rv-handnote { display: none; }.rv-shell .tn-pillar-grid article { padding-inline: 12px; }
+  .rv-shell .tn-action { font-size: 10px; padding: 9px 15px; min-height: 35px; }.rv-shell .tn-actions { gap: 9px; }
+  .rv-club-food > div { padding-right: 15px; }.rv-small-steps { gap: 10px; }.rv-small-steps article { gap: 7px; }.rv-small-steps article > span { width: 28px; height: 28px; font-size: 17px; }
+  .rv-shell .tn-section-heading { gap: 25px; }.rv-shell .tn-section-heading .rv-handnote { width: 100px; }.rv-process { gap: 40px; }
+  .rv-booking-copy { padding-left: 0; }.rv-plan-card { padding: 17px; }.rv-plan-card .tn-form-row { grid-template-columns: 1fr; }.rv-plan-card .tn-form-row:first-of-type { grid-template-columns: 1fr; }.rv-booking .tn-floor { aspect-ratio: 1.1; }.rv-booking .tn-floor-seat { width: 19px; height: 19px; font-size: 7px; }
+  .rv-possibility-grid { gap: 10px; }.rv-possibility-grid a { padding: 15px 10px; }.rv-possibility-grid h3 { font-size: 9px; }
+  .rv-partner-contact .tn-contact-grid { gap: 40px; }.rv-home-conversation .tn-wrap { gap: 25px; }.rv-home-conversation .rv-photo { height: 300px; }.rv-shell .tn-photo-card p { min-height: 90px; }.rv-tags { gap: 2px; }.rv-tags span { font-size: 7px; padding-inline: 4px; }
+}
+@media (max-width: 760px) {
+  .rv-shell { font-size: 15px; }.rv-shell .tn-wrap { width: calc(100% - 40px); }.rv-shell .tn-site h1 { font-size: clamp(48px,11.8vw,76px); }.rv-shell .tn-site h2 { font-size: 39px; }.rv-shell .tn-kicker { font-size: 9px; }
+  .rv-header { height: 74px; }.rv-header-inner { gap: 12px; }.rv-logo { width: 88px; }.rv-header-actions { margin-left: auto !important; }.rv-header-chat { display: none !important; }.rv-menu-toggle { display: block; width: 38px; min-height: 38px; }.rv-language { min-width: 39px; }
+  .rv-header nav { display: none; position: absolute; top: 74px; left: 0; right: 0; margin: 0 !important; background: var(--rv-paper); padding: 20px; box-shadow: 0 12px 25px color-mix(in srgb,var(--rv-ink) 12%,transparent); }.rv-header nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }.rv-header nav a { padding: 12px; font-size: 18px; }.rv-header-sale .rv-logo { position: static; transform: none; }.rv-header-sale .rv-language { display: grid; }
+  .rv-hero, .rv-home-hero { min-height: 0; padding-top: 260px; }.rv-hero-media, .rv-home-hero .rv-hero-media { top: 0; left: 0; width: 100%; height: 290px; }.rv-hero::before, .rv-home-hero::before { background: linear-gradient(0deg,var(--rv-paper) 0%,var(--rv-paper) 52%,transparent 68%); }.rv-hero-inner { padding-block: 15px 45px; }.rv-hero-copy, .rv-home-hero .rv-hero-copy { width: 100%; }.rv-home-hero h1 { font-size: clamp(48px,11vw,72px) !important; }.rv-hero-copy > p:not(.tn-kicker) { max-width: 100%; margin-block: 20px; }.rv-location { margin-top: 25px; }.rv-trail { width: 150px; left: 160px; }.rv-shell .tn-action { padding: 11px 17px; font-size: 11px; }.rv-shell .tn-actions { gap: 10px; }
+  .rv-home-choices { padding-block: 35px 55px; }.rv-shell .tn-card-grid { grid-template-columns: 1fr; gap: 25px; }.rv-shell .tn-photo-card p { min-height: 0; }.rv-shell .tn-photo-card > .rv-photo { aspect-ratio: 1.7; }.rv-shell .tn-photo-card > div { padding-bottom: 24px; }.rv-tags { justify-content: flex-start; gap: 12px; }
+  .rv-home-story, .rv-home-food { padding-block: 280px 55px; min-height: 0; }.rv-home-story > .rv-full-photo, .rv-home-food > .rv-full-photo { inset: 0 0 auto; width: 100%; height: 300px; }.rv-home-story::before, .rv-home-food::before { background: linear-gradient(0deg,var(--rv-paper) 0%,var(--rv-paper) 55%,transparent 74%); }.rv-half-copy { width: 100%; }.rv-half-copy .rv-handnote { margin: 24px 0 0 auto; }
+  .rv-shared-journey { padding-block: 185px 55px; }.rv-ribbon { width: 100%; top: 0; height: 210px; }.rv-shared-journey .tn-wrap > div { margin-left: 0; }.rv-home-conversation { padding: 0 0 50px; }.rv-home-conversation .tn-wrap { grid-template-columns: 1fr; gap: 30px; }.rv-home-conversation .rv-photo { height: 260px; border-radius: 0; }.rv-home-conversation .tn-wrap > div { padding-inline: 20px; }.rv-home-conversation .rv-handnote { display: none; }
+  .rv-club-intro { padding-block: 35px 40px; }.rv-club-intro > .tn-wrap { grid-template-columns: 1fr; gap: 30px; }.rv-club-intro > .tn-wrap > .rv-handnote { display: none; }.rv-shell .tn-pillar-grid { grid-template-columns: repeat(2,1fr); gap: 22px 0; }.rv-shell .tn-pillar-grid article { padding: 10px 20px; }.rv-shell .tn-pillar-grid article:nth-child(3) { border-left: 0; }.rv-shell .tn-pillar-grid h3 { margin: 10px 0; }.rv-shell .tn-pillar-grid p { font-size: 13px; }
+  .rv-green-band { padding-block: 45px; }.rv-club-food { grid-template-columns: 1fr 1fr; gap: 16px; }.rv-club-food > div { grid-column: 1 / -1; padding: 0 0 10px; }.rv-club-food > .rv-photo { height: 200px; }.rv-club-how .tn-wrap { grid-template-columns: 1fr; gap: 30px; }.rv-club-how .rv-handnote { display: none; }.rv-club-how .rv-photo { height: 230px; }.rv-small-steps { gap: 15px; }.rv-small-steps article { display: block; }.rv-small-steps p { font-size: 11px; }
+  .rv-booking { padding-block: 45px; }.rv-booking-grid { grid-template-columns: 1fr; gap: 20px; }.rv-booking-copy { padding: 0; }.rv-booking-copy .rv-handnote { display: none; }.rv-plan-card { order: 2; }.rv-booking .tn-seat-picker { order: 1; }.rv-booking .tn-floor { aspect-ratio: 1.6; }.rv-booking .tn-floor-seat { width: 28px; height: 28px; font-size: 10px; }.rv-booking .tn-floor-room { font-size: 7px; }.rv-booking .tn-seat-map-card { min-height: 330px; }.rv-booking .tn-zone-tabs button { padding: 7px 9px; }.rv-plan-card .tn-form-row { grid-template-columns: 1fr 1fr; }.rv-faq-row { grid-template-columns: 1fr 1fr; gap: 30px 18px; }.rv-faq-row details { border: 0; padding: 0; }.rv-faq-row summary { font-size: 12px; }.rv-faq-row p { font-size: 12px; margin-left: 0; }.rv-shell .tn-visit-grid { grid-template-columns: 1fr; }
+  .rv-possibilities { padding-block: 35px; }.rv-shell .tn-section-heading { display: block; }.rv-shell .tn-section-heading > p { margin-top: 18px; }.rv-shell .tn-section-heading .rv-handnote { display: none; }.rv-possibility-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }.rv-possibility-grid a { padding: 20px 15px; }.rv-partner-space { grid-template-columns: 1fr; gap: 25px; }.rv-partner-space > div:first-child { padding: 0; }.rv-partner-collage { height: 270px; }.rv-partner-how { padding-block: 35px; }.rv-process { grid-template-columns: 1fr 1fr; gap: 25px; }.rv-process article::after { display: none; }.rv-flexible { padding-block: 45px; min-height: 330px; }.rv-flexible .rv-full-photo { left: 0; width: 100%; }.rv-flexible::before { background: color-mix(in srgb,var(--rv-paper) 65%,transparent); }.rv-flexible .tn-wrap > div { padding-left: 0; }.rv-partner-contact .tn-contact-grid, .rv-sale-contact .tn-contact-grid { grid-template-columns: 1fr; gap: 30px; }.rv-partner-contact .tn-contact-grid > div:first-child { padding-left: 0; }.rv-partner-contact .rv-handnote { display: none; }.rv-shell .tn-form-card { padding: 22px; }.rv-partner-contact .tn-form-card form { grid-template-columns: 1fr; }.rv-partner-contact .tn-form-card form > label { grid-column: auto; }
+  .rv-sale-hero { padding-block: 25px 45px; }.rv-sale-hero .tn-wrap { grid-template-columns: 1fr; gap: 30px; }.rv-sale-hero h1 { font-size: 48px !important; }.rv-sale-hero .tn-wrap > .rv-photo { width: 100%; height: 410px; }.rv-sale-hero small { margin-top: 30px; }.rv-sale-hero .rv-handnote { display: none; }.rv-sale-intro { padding-block: 55px; }.rv-sale-intro h2 { font-size: 37px !important; }.rv-foundation-grid { grid-template-columns: 1fr 1fr; gap: 15px; }.rv-foundation-grid article > div { padding: 15px; }.rv-foundation-grid h3 { font-size: 23px !important; }.rv-foundation-grid p { font-size: 13px; }.rv-sale-foundation { padding-block: 40px; }.rv-sale-handover { min-height: 450px; padding-block: 100px 50px; }.rv-sale-handover .tn-wrap { grid-template-columns: 1fr; gap: 10px; }.rv-sale-offer .tn-wrap { grid-template-columns: 1fr; gap: 20px; }.rv-sale-offer { padding-block: 40px; }.rv-sale-offer article { padding: 25px; }.rv-sale-closing .tn-wrap { grid-template-columns: 1fr; gap: 30px; }.rv-sale-closing { padding-block: 45px; }.rv-sale-closing blockquote { text-align: left; }
+  .rv-shell .tn-footer { padding-top: 55px; }.rv-shell .tn-footer-grid { grid-template-columns: 1fr 1fr; gap: 35px 25px; }.rv-shell .tn-footer-grid > :not(:first-child) { border: 0; padding-left: 0; }.rv-shell .tn-footer-grid a, .rv-shell .tn-footer-grid p { font-size: 12px; }.rv-shell .tn-footer-bottom { display: block; padding-bottom: 55px; }.rv-shell .tn-footer-bottom span { display: block; margin-top: 12px; }.rv-floating-actions { right: 12px; bottom: 12px; }.rv-floating-actions a, .rv-floating-actions button { padding: 10px 14px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) { .rv-shell *, .rv-shell *::before, .rv-shell *::after { scroll-behavior: auto !important; transition: none !important; } }
+/* Keep the desktop composition proportional to the supplied 941px artboards. */
+@media (min-width: 761px) {
+  .rv-page-club, .rv-page-partnerships { font-size: clamp(12px,1.32vw,18px); }
+  .rv-page-club .rv-header, .rv-page-partnerships .rv-header { height: clamp(62px,6.6vw,94px); border: 0; }
+  .rv-page-club .rv-header-inner, .rv-page-partnerships .rv-header-inner, .rv-hero:not(.rv-home-hero) .rv-hero-inner { width: min(1130px,78.5%); }
+  .rv-hero:not(.rv-home-hero) { min-height: 0; }
+  .rv-hero:not(.rv-home-hero) .rv-hero-inner { padding-block: 1.5vw 3.2vw; }
+  .rv-hero:not(.rv-home-hero) .rv-hero-copy { width: 52%; }
+  .rv-hero:not(.rv-home-hero) h1 { margin-bottom: 12px; }
+  .rv-hero:not(.rv-home-hero) .tn-kicker { margin-bottom: 12px; }
+  .rv-hero:not(.rv-home-hero) .rv-hero-copy > p:not(.tn-kicker) { margin: 14px 0 18px; }
+  .rv-hero:not(.rv-home-hero) .rv-location { min-height: 29px; margin-top: 20px; }
+  .rv-hero:not(.rv-home-hero) .rv-location span { font-size: 19px; }
+  .rv-hero:not(.rv-home-hero) .rv-trail { height: 45px; top: -8px; }
+  .rv-page-club .tn-action, .rv-page-partnerships .tn-action { min-height: 32px; padding: 8px 18px; }
+  .rv-club-intro { padding-block: 2vw 2.5vw; }
+  .rv-club-intro > .tn-wrap { grid-template-columns: 1.04fr 1.33fr .23fr; gap: 3vw; }
+  .rv-club-intro .rv-handnote { display: block; font-size: 2.3vw; }
+  .rv-page-club .tn-pillar-grid article { padding: 8px 1.15vw; }
+  .rv-page-club .tn-pillar-grid .rv-line-icon { width: 4.5vw; height: 4.5vw; }
+  .rv-page-club .tn-pillar-grid h3 { margin: 10px 0 14px; font-size: clamp(10px,.83vw,13px); }
+  .rv-page-club .tn-pillar-grid p { font-size: .88em; }
+  .rv-page-club .rv-green-band, .rv-page-partnerships .rv-green-band { padding-block: 3.3vw 2.7vw; }
+  .rv-club-food > .rv-photo { height: 24vw; max-height: 355px; min-height: 0; }
+  .rv-club-food > div { padding-right: 3vw; }
+  .rv-club-how { padding-block: 2.5vw; }
+  .rv-club-how .tn-wrap { gap: 2.2vw; }
+  .rv-club-how .rv-photo { height: 17.5vw; min-height: 0; }
+  .rv-small-steps { margin-top: 18px; gap: 14px; }
+  .rv-small-steps p { font-size: clamp(9px,.83vw,12px); }
+  .rv-small-steps h3 { font-size: clamp(10px,.85vw,13px) !important; }
+  .rv-small-steps article > span { width: 30px; height: 30px; font-size: 18px; }
+  .rv-booking { padding-block: 3.5vw; }
+  .rv-booking-copy { padding: 0 15px 0 4vw; }
+  .rv-booking-copy .rv-handnote { font-size: clamp(20px,2vw,29px); margin-top: 18px; }
+  .rv-plan-card { padding: 15px; gap: 12px; }
+  .rv-plan-caption { padding: 6px 10px; font-size: 11px; }
+  .rv-plan-card .tn-form-row, .rv-plan-card .tn-form-row:first-of-type { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }
+  .rv-plan-card label { font-size: 10px; gap: 5px; }
+  .rv-plan-card :is(input,select) { min-height: 32px; padding: 5px; font-size: 10px; }
+  .rv-booking .tn-seat-map-card { padding: 13px; }
+  .rv-booking .tn-floor { aspect-ratio: 1.65; }
+  .rv-booking .tn-floor-seat { width: clamp(16px,1.75vw,25px); height: clamp(16px,1.75vw,25px); font-size: clamp(6px,.7vw,10px); }
+  .rv-booking .tn-zone-tabs { margin-block: 8px; }
+  .rv-booking .tn-hint { font-size: 9px !important; }
+  .rv-club-faq { padding-block: 3vw 3.5vw; }
+  .rv-faq-row { margin-top: 22px; gap: 2.5vw; }
+  .rv-faq-row summary { font-size: clamp(10px,.9vw,13px); }
+  .rv-faq-row p { font-size: clamp(9px,.82vw,12px); }
+  .rv-page-club .tn-footer, .rv-page-partnerships .tn-footer { padding-top: 4vw; padding-bottom: 14px; }
+  .rv-page-club .tn-footer-grid, .rv-page-partnerships .tn-footer-grid { gap: 24px; }
+  .rv-page-club .tn-footer-grid > :not(:first-child), .rv-page-partnerships .tn-footer-grid > :not(:first-child) { padding-left: 24px; }
+  .rv-page-club .tn-footer-grid :is(p,a,button), .rv-page-partnerships .tn-footer-grid :is(p,a,button) { font-size: clamp(10px,.9vw,13px); }
+  .rv-page-club .tn-footer-bottom, .rv-page-partnerships .tn-footer-bottom { padding-top: 16px; margin-top: 20px; padding-bottom: 20px; }
+  .rv-possibilities { padding-block: 2.5vw 3vw; }.rv-partner-how { padding-block: 2.5vw; }.rv-process { margin-top: 22px; }.rv-process article > span { margin-bottom: 12px; width: 32px; height: 32px; }
+  .rv-flexible { min-height: 0; padding-block: 3vw; }.rv-partner-contact { padding-block: 2.5vw 3vw; }
+}
+.rv-shell { overflow-x: clip; }
+.rv-shell .tn-section-heading > .tn-kicker { font-size: clamp(9px,.72vw,11px); color: var(--rv-blue); }
+.rv-home-story > .rv-full-photo, .rv-home-food > .rv-full-photo { mask-image: linear-gradient(90deg,transparent,black 23%); }
+.rv-flexible .rv-full-photo { left: 0; width: 100%; }
+.rv-flexible::before { background: linear-gradient(90deg,color-mix(in srgb,var(--rv-paper) 86%,transparent) 0%,color-mix(in srgb,var(--rv-paper) 76%,transparent) 32%,transparent 66%); }
+.rv-flexible .tn-wrap > div { max-width: 440px; }
+.rv-header-sale .rv-header-chat { display: inline-flex !important; }
+@media (min-width:761px) {
+ .rv-possibility-grid h3 { font-size: clamp(8px,.88vw,12px) !important; letter-spacing: .15em !important; }
+ .rv-possibility-grid a { padding-block: 17px; }
+ .rv-possibility-grid p { font-size: .83em; }
+}
+@media (max-width:760px) {
+ .rv-home-story > .rv-full-photo, .rv-home-food > .rv-full-photo { mask-image: linear-gradient(180deg,black 65%,transparent); }
+ .rv-header-sale .rv-header-chat { display: none !important; }
+ .rv-flexible::before { background: color-mix(in srgb,var(--rv-paper) 70%,transparent); }
+}
+@media (max-width:760px) {
+ .rv-hero, .rv-home-hero { padding-top: 280px; }
+ .rv-hero-media, .rv-home-hero .rv-hero-media { height: 305px; mask-image: linear-gradient(180deg,black 72%,transparent); }
+}
+
+/* Keep functional text readable independently of the mockup artboard size. */
+.rv-shell { font-size: 18px; line-height: 1.55; }
+.rv-shell .tn-site p { line-height: 1.55; }
+.rv-shell .tn-kicker, .rv-shell .tn-section-heading > .tn-kicker { font-size: 12px; line-height: 1.5; }
+.rv-shell .tn-action { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; min-height: 48px; font-size: 15px; padding: 12px 22px; }
+.rv-shell .rv-header { height: 90px; }
+.rv-shell .rv-header-inner { width: min(1280px,89%); gap: 22px; }
+.rv-shell .rv-header nav { margin: 0 auto; gap: 22px; }
+.rv-header nav :is(a,button) { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 0; font: 16px/1.3 Georgia,serif; white-space: nowrap; color: var(--rv-ink); background: transparent; border: 0; cursor: pointer; text-decoration: none; }
+.rv-shell .rv-header-actions { margin-left: 0; }
+.rv-shell .rv-header-chat { display: inline-flex; white-space: nowrap; }
+.rv-language { font-size: 14px; min-height: 40px; }
+.rv-location small { font-size: 13px; letter-spacing: 0; }
+.rv-tags { flex-wrap: wrap; }
+.rv-tags span { font-size: 11px; }
+.rv-shell .tn-photo-card p, .rv-shell .tn-pillar-grid p, .rv-small-steps p, .rv-faq-row p, .rv-possibility-grid p, .rv-process p, .rv-foundation-grid p, .rv-sale-offer article p { font-size: 16px; }
+.rv-shell .tn-pillar-grid h3, .rv-possibility-grid h3, .rv-process h3 { font-size: 13px !important; line-height: 1.5; letter-spacing: .1em !important; }
+.rv-small-steps h3 { font-size: 16px !important; line-height: 1.4 !important; }
+.rv-shell .rv-club-intro > .tn-wrap { grid-template-columns: 1fr 1.5fr; gap: 40px; }
+.rv-club-intro > .tn-wrap > .rv-handnote { display: none; }
+.rv-shell .tn-pillar-grid article { padding-inline: 18px; }
+.rv-club-intro, .rv-club-how, .rv-club-faq, .rv-possibilities, .rv-partner-how { padding-block: 56px; }
+.rv-club-how .tn-wrap { grid-template-columns: 1.25fr 1fr; gap: 40px; }
+.rv-club-how .rv-handnote { display: none; }
+.rv-small-steps { grid-template-columns: 1fr; gap: 16px; }
+.rv-small-steps article { display: flex; gap: 16px; }
+.rv-small-steps h3 { margin-top: 2px; margin-bottom: 4px; }
+.rv-small-steps p { margin: 0; }
+.rv-faq-row { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px 42px; }
+.rv-faq-row details { padding-right: 24px; }
+.rv-faq-row summary { font-size: 18px; line-height: 1.4; min-height: 32px; }
+.rv-shell .tn-footer-grid :is(p,a,button), .rv-shell .tn-footer-grid strong { font-size: 16px; line-height: 1.5; }
+.rv-shell .tn-footer-bottom { font-size: 14px; padding-bottom: 60px; }
+.rv-floating-actions :is(a,button) { font-size: 15px; min-height: 44px; }
+.rv-possibility-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.rv-possibility-grid a { padding: 25px; }
+.rv-process { gap: 36px; }
+.rv-partner-contact .tn-form-card :is(label,input,select,textarea), .rv-shell .tn-form-card :is(label,input,select,textarea) { font-size: 16px; }
+.rv-shell .tn-form-card :is(input,select) { min-height: 48px; }
+.rv-shell .tn-hint { font-size: 14px; line-height: 1.5; }
+/* The planner gets a full-width introduction and generous, readable panels. */
+.rv-booking { padding-block: 70px; }
+.rv-booking-grid { grid-template-columns: minmax(320px,.8fr) minmax(0,1.4fr); gap: 28px; align-items: stretch; }
+.rv-booking-copy { grid-column: 1 / -1; padding: 0 0 8px; position: relative; }
+.rv-booking-copy h2 { font-size: clamp(40px,4vw,60px) !important; }
+.rv-booking-copy h2 br { display: none; }
+.rv-booking-copy p:not(.tn-kicker) { font-size: 18px; max-width: 640px; }
+.rv-booking-copy .rv-handnote { position: absolute; right: 5%; top: 0; margin: 0; }
+.rv-plan-card { padding: 28px; gap: 22px; align-content: start; }
+.rv-plan-caption { font-size: 17px; padding: 12px; }
+.rv-plan-card label { font-size: 16px; gap: 9px; }
+.rv-plan-card :is(input,select) { min-height: 48px; padding: 10px; font-size: 16px; }
+.rv-plan-card .tn-form-row, .rv-plan-card .tn-form-row:first-of-type { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; }
+.rv-plan-selection { font-size: 16px; line-height: 1.5; }
+.rv-booking .tn-seat-map-card { padding: 26px; gap: 16px; justify-content: flex-start; }
+.rv-booking .tn-map-label { font-size: 21px; }
+.rv-booking .tn-seat-map-head p, .rv-booking .tn-seat-pill { font-size: 15px; }
+.rv-booking .tn-seat-map-head p { margin: 6px 0 0; }
+.rv-booking .tn-zone-tabs { flex-wrap: wrap; gap: 8px; margin: 0; }
+.rv-booking .tn-zone-tabs button { font-size: 14px; min-height: 44px; padding: 10px 12px; }
+.rv-map-help { font-size: 14px; color: var(--rv-muted); margin: 0; }
+.rv-booking .tn-floor-scroll { width: 100%; overflow-x: auto; padding: 8px 0 16px; }
+.rv-booking .tn-floor { min-width: 640px; aspect-ratio: 2; }
+.rv-booking .tn-floor-seat { width: 44px; height: 44px; font-size: 14px; border-width: 2px; }
+.rv-booking .tn-floor-room { font-size: 11px; }
+.rv-booking .tn-floor-window, .rv-booking .tn-floor-entrance { font-size: 9px; }
+.rv-booking .tn-hint { font-size: 14px !important; line-height: 1.5; }
+.rv-shell .tn-roadmap { width: min(1000px,100%); }
+.rv-shell .tn-roadmap-grid p, .rv-shell .tn-roadmap-note p { font-size: 16px; }
+.rv-shell .tn-roadmap-grid span { font-size: 12px; line-height: 1.4; }
+.tn-roadmap-extras { margin-top: 28px; }
+.rv-shell .tn-roadmap-extras h3 { font-size: 27px; margin-bottom: 12px; }
+@media (max-width: 1200px) {
+ .rv-shell .rv-header-chat { display: none; }
+ .rv-shell .rv-header nav { gap: 17px; }
+ .rv-shell .rv-club-intro > .tn-wrap { grid-template-columns: 1fr; gap: 30px; }
+ .rv-club-intro > .tn-wrap > div:first-child { max-width: 650px; }
+ .rv-booking-grid { grid-template-columns: 1fr; }
+ .rv-plan-card { grid-row: 3; }
+ .rv-plan-card .tn-form-row { max-width: 720px; }
+}
+@media (max-width: 900px) {
+ .rv-shell .rv-header { height: 78px; }
+ .rv-shell .rv-header nav { display: none; position: absolute; top: 78px; left: 0; right: 0; margin: 0; padding: 18px 24px; background: var(--rv-paper); box-shadow: 0 12px 25px color-mix(in srgb,var(--rv-ink) 12%,transparent); }
+ .rv-shell .rv-header nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+ .rv-header nav :is(a,button) { font-size: 18px; padding: 12px; text-align: left; }
+ .rv-menu-toggle { display: block; min-width: 44px; min-height: 44px; }
+ .rv-header-actions { margin-left: auto !important; }
+ .rv-club-how .tn-wrap { grid-template-columns: 1fr; }
+ .rv-club-how .rv-photo { height: 280px; }
+ .rv-shell .tn-footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
+ .rv-shell .tn-footer-grid > :not(:first-child) { padding-left: 0; border: 0; }
+ .rv-booking-copy .rv-handnote { display: none; }
+}
+@media (max-width: 760px) {
+ .rv-shell { font-size: 17px; }
+ .rv-shell .tn-wrap { width: calc(100% - 36px); }
+ .rv-shell .tn-action { font-size: 15px; min-height: 48px; padding: 12px 18px; }
+ .rv-shell .tn-pillar-grid article { padding-inline: 12px; }
+ .rv-club-intro, .rv-club-how, .rv-club-faq, .rv-possibilities, .rv-partner-how { padding-block: 40px; }
+ .rv-booking { padding-block: 50px; }
+ .rv-booking-copy p:not(.tn-kicker) { font-size: 17px; }
+ .rv-plan-card, .rv-booking .tn-seat-map-card { padding: 20px; }
+ .rv-booking .tn-seat-picker, .rv-plan-card { order: 0; }
+ .rv-faq-row { grid-template-columns: 1fr; gap: 28px; }
+ .rv-faq-row details { border: 0; padding: 0; }
+ .rv-faq-row p { margin-left: 32px; }
+ .rv-possibility-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .rv-possibility-grid a { padding: 20px 14px; }
+ .rv-process { grid-template-columns: 1fr; text-align: left; gap: 28px; }
+ .rv-process article > span { margin-left: 0; }
+ .rv-floating-actions :is(a,button) { font-size: 14px; padding-inline: 12px; }
+ .rv-shell .tn-roadmap { padding: 44px 24px 28px; }
+ .rv-tags span { font-size: 11px; }
+}
+
+/* Furnished room plan. The drawing and hit targets share one coordinate system. */
+.rv-booking .tn-seat-picker { grid-column: 1 / -1; order: 1; }
+.rv-booking .club-visit-seat-option { grid-column: 1 / -1; order: 0; padding: 20px 24px; background: var(--rv-paper); border: 1px solid color-mix(in srgb,var(--rv-blue) 25%,transparent); border-radius: 12px; }
+.club-visit-seat-option label { display: flex; align-items: flex-start; gap: 14px; cursor: pointer; }
+.club-visit-seat-option input { width: 23px; height: 23px; margin: 2px 0 0; accent-color: var(--rv-blue); flex: none; }
+.club-visit-seat-option strong { display: block; color: var(--rv-blue); font-size: 19px; }
+.club-visit-seat-option small { display: block; margin-top: 5px; font-size: 16px; line-height: 1.5; }
+.rv-booking .rv-plan-card { grid-column: 1 / -1; order: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; }
+.rv-booking .rv-plan-caption, .rv-booking .rv-plan-card > .tn-hint { grid-column: 1 / -1; }
+.rv-booking .rv-plan-card .tn-form-row { margin: 0; grid-template-columns: 1fr 1fr; }
+.rv-booking .rv-plan-selection { margin: 0; align-self: center; }
+.rv-booking .rv-plan-card > .tn-action { align-self: center; justify-self: end; }
+.rv-booking .tn-seat-map-head { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.club-map-zoom { border: 1px solid color-mix(in srgb,var(--rv-blue) 30%,transparent); border-radius: 99px; background: var(--rv-paper); color: var(--rv-blue); padding: 10px 18px; min-height: 44px; font-size: 15px; cursor: pointer; white-space: nowrap; }
+.rv-booking .tn-floor.club-floor-plan { width: 100%; min-width: 1100px; aspect-ratio: 1909 / 670; border: 0; box-shadow: none; background: var(--rv-paper); overflow: visible; }
+.rv-booking .tn-floor.club-floor-plan::before { content: none; }
+.rv-booking .tn-floor.club-floor-plan.is-enlarged { min-width: 1800px; }
+.club-map-drawing { display: block; width: 100%; height: auto; overflow: visible; --map-line: color-mix(in srgb,var(--tirrenia-vesuvian-stone-gray) 68%,var(--rv-paper)); --map-wood: color-mix(in srgb,var(--tirrenia-sand-beige) 76%,var(--tirrenia-vesuvian-terracotta)); }
+.club-map-tile { fill: color-mix(in srgb,var(--tirrenia-milk-cream) 73%,var(--rv-paper)); }
+.club-map-grout { fill: none; stroke: color-mix(in srgb,var(--tirrenia-sand-beige) 22%,transparent); stroke-width: 1; }
+.club-map-service-floor { fill: color-mix(in srgb,var(--tirrenia-vesuvian-stone-gray) 12%,var(--rv-paper)); }
+.club-map-wood-base { fill: var(--map-wood); }
+.club-map-grain { fill: none; stroke: color-mix(in srgb,var(--tirrenia-vesuvian-terracotta) 18%,transparent); stroke-width: 1; }
+.club-map-chair { fill: color-mix(in srgb,var(--tirrenia-vesuvian-stone-gray) 65%,var(--rv-paper)); stroke: var(--map-line); stroke-width: 2; }
+.club-map-chair-back { fill: color-mix(in srgb,var(--tirrenia-vesuvian-stone-gray) 85%,var(--rv-paper)); }
+.club-map-round-table { fill: color-mix(in srgb,var(--tirrenia-whitewash) 70%,var(--rv-paper)); stroke: var(--map-line); stroke-width: 2; }
+.club-map-table-inset { fill: none; stroke: color-mix(in srgb,var(--map-line) 17%,transparent); stroke-width: 1; }
+.club-map-staff-desk, .club-map-counter, .club-map-shared-table, .club-map-cabinets, .club-map-coffee-table { stroke: var(--map-line); stroke-width: 2; }
+.club-map-staff-desk { fill: var(--map-line); }
+.club-map-monitor, .club-map-coffee-machine { fill: var(--tirrenia-vesuvian-stone-gray); }
+.club-map-stool circle { fill: color-mix(in srgb,var(--tirrenia-vesuvian-terracotta) 45%,var(--rv-paper)); stroke: var(--map-line); stroke-width: 2; }
+.club-map-stool path { fill: none; stroke: var(--map-line); stroke-width: 3; }
+.club-map-counter { fill: color-mix(in srgb,var(--tirrenia-vesuvian-terracotta) 25%,var(--rv-paper)); }
+.club-map-display { fill: color-mix(in srgb,var(--rv-blue) 9%,var(--rv-paper)); }
+.club-map-cup { fill: var(--rv-paper); }
+.club-map-counter-base, .club-map-cabinets { fill: color-mix(in srgb,var(--tirrenia-sand-beige) 30%,var(--rv-paper)); }
+.club-map-seam { fill: none; stroke: var(--map-line); stroke-width: 1.5; opacity: .55; }
+.club-map-sofa { fill: color-mix(in srgb,var(--tirrenia-vesuvian-terracotta) 62%,var(--tirrenia-lava-black)); stroke: color-mix(in srgb,var(--tirrenia-lava-black) 65%,var(--tirrenia-vesuvian-terracotta)); stroke-width: 2; }
+.club-map-armchair { fill: color-mix(in srgb,var(--tirrenia-sand-beige) 20%,var(--rv-paper)); stroke: var(--map-line); stroke-width: 2; }
+.club-map-armchair-red { fill: color-mix(in srgb,var(--tirrenia-pompeian-red) 68%,var(--tirrenia-vesuvian-terracotta)); }
+.club-map-walls { fill: none; stroke: var(--map-line); stroke-width: 12; stroke-linecap: square; stroke-linejoin: miter; }
+.club-map-glass { fill: none; stroke: color-mix(in srgb,var(--rv-blue) 55%,var(--rv-paper)); stroke-width: 3; }
+.club-map-doors { fill: none; stroke: var(--map-line); stroke-width: 3; }
+.club-map-door-swing { stroke-width: 1.5; stroke-dasharray: 5 5; opacity: .5; }
+.club-map-labels { font: 600 22px Arial,sans-serif; letter-spacing: 2px; fill: var(--tirrenia-vesuvian-stone-gray); text-anchor: middle; }
+.club-map-labels .club-map-small-label { font-size: 22px; font-weight: 400; letter-spacing: .3px; }
+.rv-booking .club-floor-plan .tn-floor-seat { width: 44px; height: 44px; background: transparent; border: 0; box-shadow: none; color: var(--rv-blue); }
+.rv-booking .club-floor-plan .tn-floor-seat span { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--rv-paper); border: 1.5px solid var(--rv-blue); font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px color-mix(in srgb,var(--rv-ink) 16%,transparent); }
+.rv-booking .club-floor-plan .tn-floor-seat:hover, .rv-booking .club-floor-plan .tn-floor-seat.is-selected { transform: translate(-50%,-50%); }
+.rv-booking .club-floor-plan .tn-floor-seat.is-selected span { color: var(--rv-paper); background: var(--rv-blue); outline: 5px solid color-mix(in srgb,var(--rv-blue) 22%,transparent); }
+.rv-booking .club-floor-plan .tn-floor-seat:focus-visible { outline: 3px solid var(--rv-blue); outline-offset: 1px; }
+.rv-booking .club-floor-plan .tn-floor-seat:hover span { background: var(--rv-blue); color: var(--rv-paper); }
+.rv-booking .club-floor-plan .tn-floor-seat.is-muted { opacity: .5; }
+.rv-booking .club-floor-plan .tn-floor-seat:disabled { cursor: default; }
+.rv-booking .club-floor-plan .tn-floor-seat:disabled span { background: var(--rv-paper); color: var(--rv-muted); border-color: var(--rv-muted); opacity: .8; }
+.rv-booking .club-floor-plan .tn-floor-seat:disabled:hover span { background: var(--rv-paper); color: var(--rv-muted); }
+.rv-booking .club-floor-plan .tn-floor-seat.is-walkin { cursor: default; }
+.rv-booking .club-floor-plan .tn-floor-seat.is-walkin span { background: var(--rv-green); border-color: var(--rv-green); color: var(--rv-paper); font-size: 11px; }
+.rv-booking .club-floor-plan .tn-floor-seat.is-walkin:hover { transform: translate(-50%,-50%); }
+.rv-booking .club-floor-plan .tn-floor-seat.is-walkin:hover span { background: var(--rv-green); color: var(--rv-paper); }
+.club-map-walkin-note { margin: 12px 0; color: var(--rv-muted); font-size: 15px; }
+.club-map-selection { display: flex; flex-direction: column; gap: 7px; padding: 18px 22px; background: color-mix(in srgb,var(--rv-blue) 6%,var(--rv-paper)); border-radius: 8px; }
+.club-map-selection strong { font-size: 19px; color: var(--rv-blue); }
+.club-map-selection span { font-size: 16px; }
+.club-map-place-list summary { font-size: 16px; cursor: pointer; padding-block: 10px; color: var(--rv-blue); }
+.club-map-place-list .tn-seat-list { margin: 10px 0; }
+.club-map-place-list .tn-seat-list span { font-size: 16px; }
+.club-map-place-list .tn-seat-list button { min-width: 44px; min-height: 44px; font-size: 14px; border-radius: 6px; }
+.club-map-place-list .tn-seat-list button:disabled { opacity: .5; cursor: default; }
+.club-map-place-list .tn-seat-list > div > div { flex-wrap: wrap; gap: 8px; }
+@media (max-width: 720px) {
+  .rv-booking .rv-plan-card { grid-template-columns: 1fr; gap: 18px; }
+  .rv-booking .rv-plan-card > .tn-action { width: 100%; justify-self: stretch; }
+  .rv-booking .tn-seat-map-head { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .club-map-selection { padding: 16px; }
+  .club-map-place-list .tn-seat-list > div { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+/* Approved Club offer snapshot: prices live in content/club-offers.ts. */
+.club-walkin-card { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(300px,.9fr); gap: 28px; padding: 30px; margin: 0 0 32px; border-radius: 16px; background: var(--rv-paper); border: 1px solid color-mix(in srgb,var(--rv-blue) 18%,transparent); scroll-margin-top: 100px; }
+.club-walkin-card > div:first-child { display: flex; flex-direction: column; align-items: flex-start; }
+.rv-shell .club-walkin-card h3 { font-size: clamp(30px,3vw,46px); margin: 3px 0 14px; }
+.club-walkin-card p { font-size: 17px; max-width: 570px; margin: 0 0 18px; }
+.club-walkin-card a { margin-top: auto; color: var(--rv-blue); font-size: 16px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.club-walkin-drinks { padding: 24px; border-radius: 12px; background: color-mix(in srgb,var(--rv-green) 10%,var(--rv-paper)); }
+.club-walkin-drinks > span { display: block; color: var(--rv-green); font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.club-walkin-drinks > strong { display: block; margin: 9px 0; font: 400 clamp(23px,2vw,31px)/1.08 Georgia,serif; color: var(--rv-ink); }
+.club-walkin-drinks p { font-size: 15px; margin-bottom: 16px; }
+.club-walkin-drinks > div { display: grid; grid-template-columns: auto 1fr auto 1fr; gap: 6px 10px; align-items: baseline; padding: 13px 0; border-top: 1px solid color-mix(in srgb,var(--rv-green) 25%,transparent); border-bottom: 1px solid color-mix(in srgb,var(--rv-green) 25%,transparent); }
+.club-walkin-drinks b { color: var(--rv-green); font: 400 29px/1 Georgia,serif; }
+.club-walkin-drinks > div span { font-size: 14px; }
+.club-walkin-drinks small { display: block; margin-top: 13px; font-size: 13px; line-height: 1.4; }
+@media (max-width: 760px) { .club-walkin-card { grid-template-columns: 1fr; padding: 22px; gap: 20px; } .club-walkin-drinks { padding: 20px; } }
+@media (max-width: 440px) { .club-walkin-drinks > div { grid-template-columns: auto 1fr; } }
+.club-offers-section { padding-block: 75px; background: var(--rv-sand); scroll-margin-top: 30px; }
+.club-offer-switch { display: inline-flex; flex-wrap: wrap; gap: 8px; padding: 6px; border-radius: 30px; background: var(--rv-paper); margin-block: 10px 28px; }
+.club-offer-switch button { padding: 13px 24px; min-height: 48px; font-size: 17px; border: 0; border-radius: 24px; background: transparent; color: var(--rv-blue); cursor: pointer; }
+.club-offer-switch button[aria-pressed="true"] { background: var(--rv-blue); color: var(--rv-paper); }
+.club-offer-intro { display: flex; justify-content: space-between; align-items: center; gap: 35px; margin-bottom: 26px; }
+.club-offer-intro h3 { margin: 0 0 10px; }
+.club-offer-intro p { max-width: 430px; margin: 0; }
+.club-offer-intro ul { padding-left: 24px; margin: 0; font-size: 17px; line-height: 1.8; }
+.club-offer-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.club-offer-card { display: flex; flex-direction: column; padding: 30px; background: var(--rv-paper); border-radius: 14px; border: 1px solid color-mix(in srgb,var(--rv-blue) 12%,transparent); }
+.club-offer-card-featured { background: color-mix(in srgb,var(--rv-green) 9%,var(--rv-paper)); border-color: var(--rv-green); box-shadow: inset 0 0 0 1px var(--rv-green), 0 14px 32px color-mix(in srgb,var(--rv-green) 12%,transparent); }
+.club-offer-card-featured .club-offer-price { color: var(--rv-green); }
+.club-offer-card-launch { box-shadow: inset 0 4px var(--rv-accent); }
+.club-offer-card-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; min-height: 30px; margin-bottom: 12px; }
+.club-offer-card-top .tn-kicker { margin: 8px 0 0; }
+.club-offer-badge { display: inline-flex; align-items: center; min-height: 30px; padding: 5px 11px; border-radius: 99px; background: var(--rv-green); color: white; font-size: 13px; font-weight: 700; line-height: 1.2; }
+.club-offer-badge-launch { background: color-mix(in srgb,var(--rv-accent) 15%,var(--rv-paper)); color: var(--rv-ink); }
+.club-offer-card h3 { margin: 0 0 25px; }
+.club-offer-card > p:not(.tn-kicker) { font-size: 16px; }
+.club-offer-card .tn-action { margin-top: auto; align-self: flex-start; }
+.club-offer-price { display: flex; align-items: baseline; gap: 12px; color: var(--rv-blue); }
+.club-offer-price del { font-size: 22px; color: var(--rv-muted); }
+.club-offer-price strong { font: 400 clamp(40px,4vw,58px)/1.1 Georgia,serif; letter-spacing: -.05em; }
+.club-offer-unit { color: var(--rv-muted); margin-top: 8px; }
+.club-offer-details { display: flex; flex-direction: column; gap: 5px; min-height: 162px; margin: 6px 0 17px; padding: 12px 14px; border-left: 3px solid var(--rv-green); background: color-mix(in srgb,var(--rv-green) 6%,var(--rv-paper)); }
+.club-offer-details > strong { color: var(--rv-green); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.club-offer-details > span { font-size: 17px; font-weight: 700; line-height: 1.35; }
+.club-offer-details small { font-size: 14px; line-height: 1.35; color: var(--rv-muted); }
+.club-offer-details-launch { margin-top: 5px; }
+.club-offer-details-launch b { color: var(--rv-blue); }
+.club-seat-addition { min-height: 160px; margin: 8px 0 20px; padding: 16px; border: 1px solid color-mix(in srgb,var(--rv-blue) 22%,transparent); border-radius: 10px; background: var(--rv-sand); }
+.club-seat-addition label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--rv-blue); }
+.club-seat-addition input { width: 21px; height: 21px; margin: 2px 0 0; accent-color: var(--rv-blue); flex: none; }
+.club-seat-addition label strong { display: block; font-size: 17px; }
+.club-seat-addition label small { display: block; margin-top: 4px; font-size: 15px; line-height: 1.4; }
+.club-seat-addition .club-seat-total, .club-seat-addition .club-seat-availability { margin: 12px 0 0 33px; font-size: 15px; line-height: 1.4; }
+.club-seat-total > strong { font-size: 22px; color: var(--rv-blue); }
+.club-seat-total > small { display: block; margin-top: 4px; }
+.club-offer-extra { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; padding: 26px 0; }
+.club-offer-extra strong { display: block; font-size: 20px; color: var(--rv-blue); }
+.club-offer-extra strong span { margin-left: 12px; }
+.club-offer-extra p { margin: 8px 0 0; font-size: 16px; }
+.club-existing-bundle { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding: 22px 26px; margin-bottom: 26px; background: var(--rv-paper); border: 1px solid color-mix(in srgb,var(--rv-blue) 20%,transparent); border-radius: 12px; }
+.club-existing-bundle h3 { margin: 5px 0 8px; font-size: clamp(24px,2.5vw,32px); }
+.club-existing-bundle p:last-child { max-width: 780px; margin: 0; font-size: 17px; }
+.club-existing-bundle .tn-action { flex: none; }
+.club-offer-terms { font-size: 15px; max-width: 960px; line-height: 1.6; margin: 24px 0 0; }
+.club-offer-interest { grid-column: 1 / -1; margin: 0; font-size: 17px; }
+.club-loyalty-benefit { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 22px; padding: 26px 30px; margin: 24px 0 0; border-radius: 14px; background: var(--rv-dark-ocean); color: var(--rv-paper); }
+.club-loyalty-mark { display: grid; place-items: center; width: 64px; height: 64px; border: 1px solid color-mix(in srgb,var(--rv-paper) 55%,transparent); border-radius: 50%; color: var(--rv-paper); font-size: 30px; }
+.club-loyalty-benefit .tn-kicker { color: var(--rv-paper); margin: 0 0 6px; }
+.club-loyalty-benefit h3 { margin: 0 0 5px; font-size: clamp(23px,2.1vw,30px); }
+.club-loyalty-benefit p:not(.tn-kicker) { margin: 0; font-size: 16px; }
+.club-loyalty-reward { display: grid; gap: 3px; min-width: 150px; padding: 12px 0 12px 22px; border-left: 1px solid color-mix(in srgb,var(--rv-paper) 40%,transparent); }
+.club-loyalty-reward strong { font: 400 clamp(32px,2.7vw,42px)/1 Georgia,serif; }
+.club-loyalty-reward span { font-size: 15px; }
+.club-action-route { padding-block: 62px; background: var(--rv-dark-ocean); color: var(--rv-paper); }
+.club-action-route .tn-wrap { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.club-action-route .tn-kicker, .club-action-route h2 { color: var(--rv-paper); }
+.club-action-route h2 { margin: 8px 0 12px; font-size: clamp(31px, 3.6vw, 47px); }
+.club-action-route p:last-child { max-width: 630px; margin: 0; font-size: 17px; }
+.club-action-route .tn-action { flex: none; background: var(--rv-paper); color: var(--rv-blue); }
+@media(max-width:720px) {
+ .club-action-route .tn-wrap { flex-direction: column; align-items: flex-start; }
+ .club-offers-section { padding-block: 45px; }
+ .club-offer-intro { flex-direction: column; align-items: flex-start; gap: 18px; }
+ .club-offer-grid, .club-offer-extra { grid-template-columns: 1fr; }
+ .club-offer-card { padding: 25px; }
+ .club-offer-card h3 { margin-bottom: 15px; }
+ .club-offer-details, .club-seat-addition { min-height: 0; }
+ .club-offer-switch { width: 100%; border-radius: 12px; }
+ .club-offer-switch button { flex: 1 1 100%; border-radius: 8px; }
+ .club-offer-extra { gap: 14px; }
+ .club-existing-bundle { flex-direction: column; align-items: flex-start; }
+ .club-loyalty-benefit { grid-template-columns: auto 1fr; padding: 22px; gap: 14px; }
+ .club-loyalty-mark { width: 48px; height: 48px; font-size: 24px; }
+ .club-loyalty-reward { grid-column: 1 / -1; border-left: 0; border-top: 1px solid color-mix(in srgb,var(--rv-paper) 40%,transparent); padding: 14px 0 0; }
+}

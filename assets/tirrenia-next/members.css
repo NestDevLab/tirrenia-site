@@ -1,0 +1,122 @@
+.members-page { background: var(--tirrenia-whitewash); color: var(--tirrenia-lava-black); }
+.members-page .members-wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.members-page h1, .members-page h2, .members-page h3 { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.035em; }
+.members-page h1 { margin: 16px 0 20px; font-size: clamp(3.7rem, 7vw, 7rem); line-height: .98; }
+.members-page h2 { margin: 12px 0 20px; font-size: clamp(2.5rem, 4.5vw, 4.6rem); line-height: 1.05; }
+.members-page h3 { margin: 12px 0; font-size: clamp(1.5rem, 2.2vw, 2rem); }
+.members-page p { line-height: 1.55; }
+.members-eyebrow { color: var(--tirrenia-capri-blue); font-size: .79rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.members-hero { position: relative; overflow: hidden; padding: clamp(70px, 8vw, 118px) 0; background: var(--tirrenia-milk-cream); }
+.members-hero:after { position: absolute; right: -7%; bottom: -120px; width: 40%; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--tirrenia-capri-blue) 16%, transparent); border-radius: 50%; content: ''; pointer-events: none; }
+.members-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(310px, 430px); gap: 8%; align-items: center; }
+.members-hero-grid > div > p { max-width: 590px; font-size: clamp(1.15rem, 1.7vw, 1.4rem); }
+.members-hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+.members-hero-actions a, .members-section button:not(.members-text-button), .members-visit-status button { display: inline-flex; align-items: center; justify-content: center; min-height: 49px; padding: 12px 22px; border: 1px solid var(--tirrenia-capri-blue); border-radius: 30px; background: var(--tirrenia-capri-blue); color: white; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+.members-hero-actions a + a { background: transparent; color: var(--tirrenia-capri-blue); }
+.members-today { padding: clamp(28px, 4vw, 48px); border-radius: 18px; background: var(--tirrenia-capri-blue); color: white; box-shadow: 0 24px 55px color-mix(in srgb, var(--tirrenia-capri-blue) 20%, transparent); }
+.members-today .members-eyebrow { color: var(--tirrenia-milk-cream); }
+.members-today-number { display: flex; gap: 18px; align-items: center; margin: 20px 0; }
+.members-today-number strong { font: 400 clamp(4.5rem, 9vw, 7.8rem)/.9 Georgia, serif; }
+.members-today-number span { font-size: 1.15rem; line-height: 1.2; }
+.members-counter-status { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 12px; }
+.members-counter-status span { display: grid; gap: 4px; min-width: 120px; padding: 12px 14px; border: 1px solid color-mix(in srgb, white 28%, transparent); border-radius: 9px; font-size: .85rem; }
+.members-counter-status b { font-size: 1rem; }
+.members-notice { padding: 12px; border-radius: 7px; background: color-mix(in srgb, white 12%, transparent); }
+.members-today > small { display: block; line-height: 1.45; }
+.members-text-button { padding: 4px 0; border: 0; background: none; color: inherit; text-decoration: underline; cursor: pointer; }
+.members-today .members-text-button { margin-top: 13px; }
+.members-jump { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: -1px; padding-block: 25px; }
+.members-jump a { display: flex; justify-content: space-between; gap: 12px; padding: 17px; border-bottom: 1px solid var(--tirrenia-capri-blue); color: var(--tirrenia-capri-blue); font-weight: 700; text-decoration: none; }
+.members-section { padding-block: clamp(65px, 8vw, 115px); }
+.members-section-heading { max-width: 790px; }
+.members-section-heading > p { max-width: 690px; font-size: 1.15rem; }
+.members-walkin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 35px; }
+.members-option { display: flex; flex-direction: column; min-height: 290px; padding: clamp(25px, 3.4vw, 42px); border: 1px solid color-mix(in srgb, var(--tirrenia-capri-blue) 20%, transparent); border-radius: 14px; background: white; }
+.members-option > span { color: var(--tirrenia-capri-blue); font-size: .79rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; }
+.members-option p { max-width: 450px; margin-bottom: auto; }
+.members-option strong { margin-top: 24px; color: var(--tirrenia-capri-blue); font-size: 1.12rem; }
+.members-option small { margin-top: 7px; }
+.members-walkin-form, .members-visit-status { display: flex; flex-wrap: wrap; gap: 18px; align-items: end; margin-top: 26px; padding: 25px; border-radius: 14px; background: var(--tirrenia-milk-cream); }
+.members-walkin-form label { display: grid; gap: 8px; font-weight: 700; }
+.members-walkin-form label:first-child { flex: 1 1 240px; }
+.members-walkin-form input[type='text'], .members-walkin-form input:not([type]) { min-height: 48px; padding: 10px 14px; border: 1px solid var(--tirrenia-app-border); border-radius: 6px; font: inherit; }
+.members-walkin-form .members-check { display: flex; gap: 9px; align-items: center; flex: 1 1 230px; }
+.members-walkin-form > p { flex-basis: 100%; margin: 0; font-size: .91rem; }
+.members-section button:disabled { opacity: .5; cursor: not-allowed; }
+.members-error { color: var(--tirrenia-lava-black); font-weight: 700; }
+.members-visit-status { justify-content: space-between; }
+.members-visit-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.members-visit-status h3 { margin: 7px 0; }
+.members-order { display: grid; grid-template-columns: 1fr 42%; gap: 7%; align-items: center; }
+.members-order-image { min-height: 400px; border-radius: 16px; background: url('/assets/tirrenia-journey-v1/img/cappuccino.webp') center/cover; }
+.members-book { padding-top: 78px; background: var(--tirrenia-milk-cream); }
+.members-book > .members-wrap { margin-bottom: 30px; }
+.members-book .rv-booking { margin-top: 0; }
+.members-room-preview { padding-bottom: 85px; }
+.members-room-map { overflow-x: auto; padding: 12px; border: 1px solid color-mix(in srgb, var(--tirrenia-capri-blue) 20%, transparent); border-radius: 16px; background: white; }
+.members-room-map .tn-floor { width: 100%; min-width: 1100px; aspect-ratio: 1909 / 670; overflow: visible; border: 0; background: var(--tirrenia-milk-cream); box-shadow: none; }
+.members-room-map .tn-floor::before { content: none; }
+.members-room-map .tn-floor-seat { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; box-shadow: none; color: var(--tirrenia-capri-blue); }
+.members-room-map .tn-floor-seat span { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--tirrenia-capri-blue); border-radius: 50%; background: white; font-size: 14px; font-weight: 700; }
+.members-room-map .tn-floor-seat.is-walkin span { border-color: var(--tirrenia-historic-sign-green); background: var(--tirrenia-historic-sign-green); color: white; font-size: 11px; }
+.members-room-map .tn-floor-seat.is-taken span { border-color: #777; background: #e8e7e4; color: #565656; }
+.members-room-note { display: flex; gap: 25px; align-items: start; justify-content: space-between; margin-top: 18px; color: var(--tirrenia-capri-blue); }
+.members-room-note strong { min-width: 250px; font-size: 1.1rem; }
+.members-room-note p { max-width: 680px; margin: 0; }
+.members-feedback { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 410px); gap: 8%; align-items: center; }
+.members-feedback-preview { min-height: 240px; padding: 35px; border: 1px solid color-mix(in srgb, var(--tirrenia-capri-blue) 20%, transparent); border-radius: 16px; background: var(--tirrenia-milk-cream); }
+.members-feedback-preview > span { display: block; margin-bottom: 20px; color: var(--tirrenia-capri-blue); font-size: 3rem; line-height: 1; }
+.members-feedback-preview strong { display: block; font: 400 1.8rem/1.1 Georgia, serif; }
+.members-more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 100px; }
+.members-more > * { padding: 28px; border: 1px solid color-mix(in srgb, var(--tirrenia-capri-blue) 20%, transparent); border-radius: 12px; background: white; color: inherit; text-decoration: none; }
+.members-more span { color: var(--tirrenia-capri-blue); text-transform: uppercase; font-size: .78rem; letter-spacing: .12em; }
+.members-more strong { color: var(--tirrenia-capri-blue); }
+.members-footer { padding: 50px 0; background: var(--tirrenia-capri-blue); color: white; }
+.members-footer .members-wrap { display: flex; gap: 25px; align-items: center; justify-content: space-between; }
+.members-footer img { width: 110px; filter: brightness(0) invert(1); }
+.members-footer a { color: white; }
+.members-account-shell { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); overflow: hidden; margin-top: 32px; border: 1px solid color-mix(in srgb, var(--tirrenia-capri-blue) 18%, transparent); border-radius: 18px; background: white; box-shadow: 0 18px 45px color-mix(in srgb, var(--tirrenia-capri-blue) 8%, transparent); }
+.members-account-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 5vw, 65px); background: var(--tirrenia-historic-sign-green); color: white; }
+.members-account-copy h3 { max-width: 360px; font-size: clamp(2.2rem, 3.3vw, 3.8rem); }
+.members-account-copy p { max-width: 400px; font-size: 1.08rem; }
+.members-account-symbol { font-size: 3rem; line-height: 1; }
+.members-account-benefits { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
+.members-account-benefits span { padding: 9px 13px; border: 1px solid color-mix(in srgb, white 55%, transparent); border-radius: 30px; font-size: .86rem; }
+.members-account-stage { min-height: 450px; padding: clamp(28px, 4vw, 54px); }
+.members-account-stage h3 { margin-top: 10px; font-size: clamp(1.8rem, 2.7vw, 2.8rem); }
+.members-account-stage p { max-width: 520px; }
+.members-preview-note { padding: 12px 15px; border-left: 3px solid var(--tirrenia-capri-blue); background: var(--tirrenia-milk-cream); font-size: .9rem; }
+.members-account-actions { display: grid; gap: 11px; margin-top: 25px; }
+.members-account-actions button, .members-account-submit { display: flex; justify-content: space-between; gap: 20px; align-items: center; width: 100%; min-height: 54px; padding: 13px 18px; border: 1px solid var(--tirrenia-capri-blue); border-radius: 9px; background: var(--tirrenia-capri-blue); color: white; font: inherit; font-weight: 700; text-align: left; cursor: pointer; }
+.members-page .members-account-actions button, .members-page .members-account-submit { display: flex; justify-content: space-between; border-radius: 9px; }
+.members-account-actions button + button { background: white; color: var(--tirrenia-capri-blue); }
+.members-page .members-account-actions button + button { background: white; color: var(--tirrenia-capri-blue); }
+.members-account-stage .members-account-demo, .members-account-stage .members-back { display: inline-flex; width: auto; padding: 9px 0; border: 0; background: none; color: var(--tirrenia-capri-blue); font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.members-page .members-account-stage .members-account-demo, .members-page .members-account-stage .members-back { min-height: 0; padding: 9px 0; border: 0; border-radius: 0; background: none; color: var(--tirrenia-capri-blue); }
+.members-account-stage .members-account-demo { margin-top: 20px; }
+.members-account-stage label { display: grid; gap: 8px; margin: 15px 0; font-weight: 700; }
+.members-account-stage label small { display: inline; font-weight: 400; }
+.members-account-stage input:not([type='checkbox']) { width: 100%; min-height: 50px; padding: 11px 14px; border: 1px solid var(--tirrenia-app-border); border-radius: 7px; font: inherit; }
+.members-account-stage input:disabled { background: var(--tirrenia-milk-cream); }
+.members-account-stage .members-consent { display: flex; gap: 11px; align-items: start; font-weight: 400; }
+.members-consent input { margin-top: 6px; }
+.members-account-stage .members-form-help { font-size: .91rem; }
+.members-account-submit { margin-top: 25px; }
+.members-account-submit:disabled { opacity: .5; cursor: not-allowed; }
+.members-card-preview { display: flex; flex-direction: column; justify-content: space-between; width: min(340px, 100%); aspect-ratio: 1.65; margin-top: 25px; padding: 20px; border-radius: 13px; background: var(--tirrenia-capri-blue); color: white; box-shadow: 0 13px 28px color-mix(in srgb, var(--tirrenia-capri-blue) 22%, transparent); }
+.members-card-preview span { font-size: 2rem; }
+.members-card-preview strong { font-family: Georgia, serif; letter-spacing: .15em; }
+.members-account-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+.members-account-stats article { display: grid; gap: 5px; min-height: 145px; padding: 19px; border-radius: 12px; background: var(--tirrenia-milk-cream); }
+.members-account-stats strong { color: var(--tirrenia-capri-blue); font: 400 clamp(2rem, 3vw, 3rem)/1 Georgia, serif; }
+.members-account-stats span { font-weight: 700; }
+.members-account-stats small { color: var(--tirrenia-lava-black); }
+.members-account-activity { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.members-account-activity > div { padding: 18px; border: 1px solid var(--tirrenia-app-border); border-radius: 10px; }
+.members-account-activity strong { color: var(--tirrenia-capri-blue); }
+.members-account-activity p { margin: 8px 0 0; }
+.members-account-stage :is(button, input):focus-visible { outline: 3px solid var(--tirrenia-historic-sign-green); outline-offset: 3px; }
+tirrenia-header .tn-official-header .nav-disabled { opacity: .5; cursor: default; }
+tirrenia-header .tn-official-header [aria-current='page'] { text-decoration: underline; text-underline-offset: 6px; }
+@media (max-width: 900px) { .members-hero-grid, .members-order, .members-feedback, .members-account-shell { grid-template-columns: 1fr; } .members-order-image { min-height: 290px; } .members-jump { grid-template-columns: repeat(3, 1fr); } .members-more { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .members-page .members-wrap { width: calc(100% - 32px); } .members-hero { padding-top: 55px; } .members-hero-grid { gap: 32px; } .members-jump { grid-template-columns: 1fr 1fr; } .members-walkin-grid, .members-more, .members-account-stats, .members-account-activity { grid-template-columns: 1fr; } .members-walkin-form { align-items: stretch; } .members-walkin-form button { width: 100%; } .members-room-note { flex-direction: column; gap: 7px; } .members-footer .members-wrap { align-items: flex-start; flex-direction: column; } }
