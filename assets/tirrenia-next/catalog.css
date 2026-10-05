@@ -1,0 +1,46 @@
+.catalog-page { min-height: 100vh; background: var(--rv-paper); color: var(--rv-ink); }
+.catalog-page .tn-site { min-height: 65vh; }
+.catalog-hero { padding: clamp(4rem, 7vw, 7.5rem) 0 clamp(3rem, 5vw, 5rem); background: var(--rv-sand); }
+.catalog-hero-menu { background: linear-gradient(90deg, var(--rv-sand) 0%, var(--rv-sand) 44%, transparent 78%), url('/assets/tirrenia-journey-v1/img/lasagna.webp') right center / 52% auto no-repeat, var(--rv-sand); }
+.catalog-hero-shop { background: linear-gradient(90deg, var(--rv-sand) 0%, var(--rv-sand) 44%, transparent 78%), url('/assets/tirrenia-journey-v1/img/shelves.webp') right center / 52% auto no-repeat, var(--rv-sand); }
+.catalog-hero .tn-wrap { max-width: 1180px; }
+.catalog-hero h1 { max-width: 13ch; margin: .5rem 0 1rem; font-family: Georgia, serif; font-size: clamp(3.3rem, 7vw, 7rem); line-height: .98; font-weight: 400; }
+.catalog-hero p:not(.tn-kicker) { max-width: 56ch; font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.55; }
+.catalog-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; }
+.catalog-hero-actions > span { color: var(--rv-ink); opacity: .7; font-size: .9rem; }
+.catalog-body { max-width: 1180px; padding-top: 3rem; padding-bottom: 6rem; }
+.catalog-search { display: grid; gap: .55rem; max-width: 32rem; color: var(--rv-blue); font-weight: 700; }
+.catalog-search input { width: 100%; padding: .85rem 1rem; border: 1px solid var(--rv-blue); border-radius: .55rem; background: white; color: var(--rv-ink); font: inherit; font-size: 1.05rem; }
+.catalog-search input:focus-visible, .catalog-categories a:focus-visible, .catalog-card a:focus-visible { outline: 3px solid var(--rv-accent); outline-offset: 3px; }
+.catalog-allergen-note { margin: 1.5rem 0 0; color: var(--rv-ink); font-size: .95rem; }
+.catalog-categories { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: .6rem; padding: 1.5rem 0 1rem; scrollbar-width: thin; }
+.catalog-categories a { padding: .55rem .85rem; border: 1px solid var(--rv-blue); border-radius: 2rem; color: var(--rv-blue); text-decoration: none; }
+.catalog-categories a { flex: none; }
+.catalog-categories a:hover { background: var(--rv-blue); color: white; }
+.catalog-group { padding-top: 2.5rem; scroll-margin-top: 7rem; }
+.catalog-heading h2 { margin: .3rem 0 1.35rem; font-family: Georgia, serif; font-size: clamp(2rem, 3vw, 3.2rem); font-weight: 400; }
+.catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.catalog-card { overflow: hidden; display: flex; flex-direction: column; min-width: 0; border: 1px solid color-mix(in srgb, var(--rv-blue) 18%, transparent); border-radius: .7rem; background: white; box-shadow: 0 10px 28px #162e3b0e; }
+.catalog-card > img { width: 100%; height: 15rem; object-fit: contain; background: var(--rv-sand); }
+.catalog-card details { margin-top: .8rem; border-top: 1px solid #d9e3e5; padding-top: .75rem; }
+.catalog-card summary { cursor: pointer; color: var(--rv-blue); font-weight: 700; }
+.catalog-card .catalog-story h4 { margin: 1rem 0 .3rem; font-family: Georgia, serif; font-size: 1.15rem; }
+.catalog-card .catalog-story p { margin: .4rem 0; }
+.catalog-card .catalog-allergens { font-size: .9rem; color: var(--rv-ink); }
+.catalog-card-copy { display: flex; flex: 1; flex-direction: column; padding: 1.2rem; }
+.catalog-card h3 { margin: 0; font-family: Georgia, serif; font-size: 1.55rem; font-weight: 400; line-height: 1.15; }
+.catalog-card p { margin: .7rem 0 1rem; font-size: 1rem; line-height: 1.5; }
+.catalog-card-bottom { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: 1.2rem; }
+.catalog-card-bottom strong { color: var(--rv-blue); font-size: 1.35rem; }
+.catalog-card-bottom span { color: var(--rv-green); font-size: .9rem; font-weight: 700; }
+.catalog-card small { display: block; margin-top: .6rem; color: var(--rv-ink); opacity: .7; line-height: 1.4; }
+.catalog-empty { margin: 3rem 0; font-size: 1.3rem; }
+.catalog-footer { padding: 2.5rem 0; background: var(--rv-blue); color: white; }
+.catalog-footer .tn-wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+.catalog-footer img { width: 9rem; filter: brightness(0) invert(1); }
+.catalog-footer div div { display: flex; flex-wrap: wrap; gap: 1rem; }
+.catalog-footer a { color: white; }
+@media (max-width: 850px) { .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 580px) { .catalog-grid { grid-template-columns: 1fr; } .catalog-card > img { height: 13rem; } .catalog-body { padding-bottom: 3rem; } }
+@media (max-width: 850px) { .catalog-hero-menu, .catalog-hero-shop { background-size: 100% 100%, 80% auto; background-position: center, right bottom; } }
+@media (max-width: 580px) { .catalog-hero-menu, .catalog-hero-shop { background: var(--rv-sand); } }

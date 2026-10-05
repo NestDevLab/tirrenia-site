@@ -1,0 +1,16 @@
+.club-online-booking { margin: 2rem auto 4rem; padding: clamp(1.5rem, 4vw, 3.5rem); border: 1px solid #c8d8dc; border-radius: 1rem; background: #fffdf8; box-shadow: 0 16px 40px #18394512; }
+.club-online-heading { max-width: 44rem; }
+.club-online-heading h2 { margin: .4rem 0 .8rem; font: 400 clamp(2.2rem, 4vw, 4rem)/1.05 Georgia, serif; }
+.club-online-heading p { font-size: 1.1rem; line-height: 1.5; }
+.club-online-heading .club-online-today { display: inline-flex; align-items: baseline; gap: .5rem; margin: .5rem 0; padding: .6rem 1rem; border-radius: 2rem; background: #e8f1f0; color: #075879; }
+.club-online-today strong { font: 400 2rem/1 Georgia, serif; }
+.club-online-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.8rem 0; }
+.club-online-booking label { display: grid; gap: .4rem; font-weight: 700; }
+.club-online-booking :is(input, select, textarea) { width: 100%; min-height: 3rem; padding: .65rem .8rem; border: 1px solid #acc3ca; border-radius: .45rem; background: white; color: #172d37; font: inherit; }
+.club-online-booking :is(input, select, textarea):focus-visible { outline: 3px solid #cb6d4c; outline-offset: 2px; }
+.club-online-booking textarea { resize: vertical; }
+.club-online-note { max-width: 44rem; }
+.club-online-slots { display: flex; flex-wrap: wrap; gap: .5rem; margin: .8rem 0 1.7rem; }
+.club-online-slots span { padding: .45rem .7rem; border-radius: 2rem; background: #e8f1f0; font-size: .9rem; }
+.club-online-booking button:disabled { opacity: .55; cursor: not-allowed; }
+@media (max-width: 650px) { .club-online-fields { grid-template-columns: 1fr; } }

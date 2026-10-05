@@ -116,7 +116,20 @@
 .members-account-activity strong { color: var(--tirrenia-capri-blue); }
 .members-account-activity p { margin: 8px 0 0; }
 .members-account-stage :is(button, input):focus-visible { outline: 3px solid var(--tirrenia-historic-sign-green); outline-offset: 3px; }
+.member-store-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.member-store-group { padding: 1.5rem; border: 1px solid #c9d9dc; border-radius: 1rem; background: #fffdf8; }
+.member-store-group h3 { margin: 0 0 1rem; font: 400 clamp(1.6rem, 2.5vw, 2.4rem)/1.1 Georgia, serif; }
+.member-store-group > div { display: grid; gap: .8rem; }
+.member-store-group article { padding: 1rem; border: 1px solid #d5e2e4; border-radius: .7rem; background: white; }
+.member-store-group h4 { margin: 0; font-size: 1.1rem; }
+.member-store-price { display: flex; align-items: baseline; gap: .6rem; margin: .6rem 0; }
+.member-store-price del { color: #6f7777; }
+.member-store-price strong { color: var(--tirrenia-capri-blue); font: 400 1.8rem/1 Georgia, serif; }
+.member-store-group button { padding: .6rem 1rem; border: 0; border-radius: 2rem; background: var(--tirrenia-capri-blue); color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.member-store-group button:disabled { opacity: .5; cursor: progress; }
+.member-store a { color: var(--tirrenia-capri-blue); font-weight: 700; }
 tirrenia-header .tn-official-header .nav-disabled { opacity: .5; cursor: default; }
 tirrenia-header .tn-official-header [aria-current='page'] { text-decoration: underline; text-underline-offset: 6px; }
 @media (max-width: 900px) { .members-hero-grid, .members-order, .members-feedback, .members-account-shell { grid-template-columns: 1fr; } .members-order-image { min-height: 290px; } .members-jump { grid-template-columns: repeat(3, 1fr); } .members-more { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) { .members-page .members-wrap { width: calc(100% - 32px); } .members-hero { padding-top: 55px; } .members-hero-grid { gap: 32px; } .members-jump { grid-template-columns: 1fr 1fr; } .members-walkin-grid, .members-more, .members-account-stats, .members-account-activity { grid-template-columns: 1fr; } .members-walkin-form { align-items: stretch; } .members-walkin-form button { width: 100%; } .members-room-note { flex-direction: column; gap: 7px; } .members-footer .members-wrap { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 760px) { .member-store-grid { grid-template-columns: 1fr; } }
