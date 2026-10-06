@@ -14,3 +14,10 @@
 .club-online-slots span { padding: .45rem .7rem; border-radius: 2rem; background: #e8f1f0; font-size: .9rem; }
 .club-online-booking button:disabled { opacity: .55; cursor: not-allowed; }
 @media (max-width: 650px) { .club-online-fields { grid-template-columns: 1fr; } }
+.club-booking-seats, .club-booking-cover, .club-booking-receipt { margin-top: 1.5rem; padding: 1.25rem; border: 1px solid var(--tirrenia-sand-beige); border-radius: .8rem; }
+.club-booking-seats .club-floor-plan { position: relative; max-width: 100%; margin-top: 1rem; }
+.club-booking-seats .tn-floor-seat { position: absolute; transform: translate(-50%, -50%); z-index: 2; }
+.club-booking-cover { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.club-booking-cover h3 { flex-basis: 100%; }
+.club-booking-cover button, .club-booking-receipt button { padding: .7rem 1rem; border: 0; border-radius: .4rem; background: var(--tirrenia-capri-blue); color: white; cursor: pointer; }
+.club-booking-seats .tn-floor-seat:disabled { cursor: not-allowed; }
