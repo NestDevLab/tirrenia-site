@@ -21,3 +21,73 @@
 .club-booking-cover h3 { flex-basis: 100%; }
 .club-booking-cover button, .club-booking-receipt button { padding: .7rem 1rem; border: 0; border-radius: .4rem; background: var(--tirrenia-capri-blue); color: white; cursor: pointer; }
 .club-booking-seats .tn-floor-seat:disabled { cursor: not-allowed; }
+
+.club-wizard-progress { margin: 2rem 0; }
+.club-wizard-progress-track { height: .45rem; border-radius: 1rem; background: var(--tirrenia-sand-beige); overflow: hidden; }
+.club-wizard-progress-track span { display: block; height: 100%; background: var(--tirrenia-capri-blue); transition: width .2s ease; }
+.club-wizard-progress ol { display: flex; justify-content: space-between; gap: .35rem; list-style: none; margin: .8rem 0 0; padding: 0; }
+.club-wizard-progress button { border: 0; background: transparent; color: inherit; font: inherit; font-weight: 700; cursor: pointer; }
+.club-wizard-progress [aria-current='step'] button { color: var(--tirrenia-capri-blue); text-decoration: underline; text-underline-offset: .4rem; }
+.club-wizard-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 290px); gap: 2rem; align-items: start; }
+.club-wizard-main { min-width: 0; }
+.club-wizard-main h3 { margin: 0 0 .7rem; font: 400 clamp(1.7rem, 3vw, 2.5rem)/1.1 Georgia, serif; }
+.club-wizard-main h4 { margin: 1.6rem 0 .6rem; }
+.club-wizard-offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.club-wizard-offer { display: block; text-align: left; padding: 0; overflow: hidden; border: 2px solid var(--tirrenia-sand-beige); border-radius: .8rem; background: white; color: inherit; cursor: pointer; }
+.club-wizard-offer.is-selected { border-color: var(--tirrenia-capri-blue); box-shadow: 0 0 0 3px color-mix(in srgb, var(--tirrenia-capri-blue) 18%, transparent); }
+.club-wizard-offer img, .club-wizard-image-placeholder { display: block; width: 100%; height: 150px; object-fit: cover; background: var(--tirrenia-sand-beige); }
+.club-wizard-offer > span:last-child { display: grid; gap: .55rem; padding: 1rem; }
+.club-wizard-offer strong { font-size: 1.18rem; }
+.club-wizard-offer small { line-height: 1.4; }
+.club-wizard-offer b { color: var(--tirrenia-capri-blue); }
+.club-wizard-people { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; font-weight: 700; }
+.club-wizard-people > div { display: flex; align-items: center; border: 1px solid var(--tirrenia-capri-blue); border-radius: 2rem; overflow: hidden; }
+.club-wizard-people button { min-width: 44px; min-height: 44px; border: 0; background: transparent; font-size: 1.5rem; cursor: pointer; }
+.club-wizard-people output { min-width: 2rem; text-align: center; }
+.club-wizard-today { margin: 1rem 0; padding: .8rem 1rem; border-radius: .6rem; background: var(--tirrenia-sand-beige); }
+.club-wizard-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .4rem; }
+.club-wizard-days button, .club-wizard-times button { display: grid; gap: .15rem; justify-items: center; min-height: 70px; padding: .5rem; border: 1px solid var(--tirrenia-sand-beige); border-radius: .6rem; background: white; color: inherit; cursor: pointer; }
+.club-wizard-days button[aria-pressed='true'], .club-wizard-times button[aria-pressed='true'] { border-color: var(--tirrenia-capri-blue); background: color-mix(in srgb, var(--tirrenia-capri-blue) 12%, white); }
+.club-wizard-days button:disabled, .club-wizard-times button:disabled { background: var(--tirrenia-sand-beige); opacity: .5; }
+.club-wizard-times { display: flex; flex-wrap: wrap; gap: .55rem; }
+.club-wizard-times button { min-height: 54px; min-width: 135px; }
+.club-wizard-map-scroll { max-width: 100%; overflow-x: auto; }
+.club-wizard-map-hint { display: none; }
+.club-wizard-summary { position: sticky; top: 1rem; display: grid; gap: .55rem; padding: 1.2rem; border: 1px solid var(--tirrenia-sand-beige); border-radius: .8rem; background: white; }
+.club-wizard-summary p { margin: 0; }
+.club-wizard-summary b { font-size: 1.8rem; color: var(--tirrenia-capri-blue); }
+.club-wizard-summary small { line-height: 1.4; }
+.club-wizard-eyebrow { color: var(--tirrenia-capri-blue); text-transform: uppercase; letter-spacing: .1em; font-size: .78rem; font-weight: 800; }
+.club-wizard-actions { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+.club-wizard-main :is(.club-wizard-actions, .club-wizard-auth, .club-booking-cover, .club-booking-seats, .club-booking-receipt) button:not(.tn-floor-seat, .club-wizard-link) { min-height: 44px; padding: .65rem 1rem; border: 0; border-radius: .45rem; background: var(--tirrenia-capri-blue); color: white; cursor: pointer; }
+.club-wizard-main button.club-wizard-secondary { border: 1px solid var(--tirrenia-capri-blue); background: white; color: var(--tirrenia-capri-blue); }
+.club-wizard-auth form { display: grid; gap: .8rem; max-width: 28rem; }
+.club-wizard-auth form label { display: grid; gap: .35rem; }
+.club-wizard-auth .club-wizard-consent { display: flex; align-items: center; font-weight: 400; }
+.club-wizard-consent input { width: auto; min-height: auto; }
+.club-wizard-link { border: 0; background: transparent; color: var(--tirrenia-capri-blue); font: inherit; text-decoration: underline; cursor: pointer; }
+.club-booking-cover { display: grid; align-items: start; }
+.club-booking-cover button { width: fit-content; }
+.club-booking-receipt h3 { font-size: clamp(2rem, 4vw, 3.5rem); }
+.club-wizard-error { padding: .8rem; border-left: 4px solid var(--tirrenia-pompeian-red); }
+.club-wizard-mobile-next { display: none; }
+.club-online-booking button:focus-visible { outline: 3px solid var(--tirrenia-capri-blue); outline-offset: 3px; }
+@media (max-width: 760px) {
+  .club-online-booking { padding: 1rem; }
+  .club-wizard-layout { display: block; padding-bottom: 5rem; }
+  .club-wizard-offers { grid-template-columns: 1fr; }
+  .club-wizard-offer { display: grid; grid-template-columns: 38% 1fr; }
+  .club-wizard-offer img, .club-wizard-image-placeholder { height: 100%; min-height: 145px; }
+  .club-wizard-days { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .club-wizard-days button { padding: .2rem; font-size: .75rem; }
+  .club-wizard-map-hint { display: block; font-size: .85rem; }
+  .club-wizard-map-scroll .club-floor-plan { min-width: 600px; width: 600px; }
+  .club-wizard-map-scroll .tn-floor-seat { width: 34px; height: 34px; font-size: 10px; }
+  .club-wizard-progress button { font-size: .8rem; }
+  .club-wizard-summary { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem .8rem; margin: 1.5rem -1rem -1rem; padding: .7rem 1rem; border-radius: 0; box-shadow: 0 -4px 20px color-mix(in srgb, var(--tirrenia-capri-blue) 15%, transparent); }
+  .club-wizard-summary.is-visible { position: fixed; top: auto; left: 0; right: 0; bottom: 0; z-index: 901; margin: 0; }
+  .club-wizard-summary p, .club-wizard-summary small { display: none; }
+  .club-wizard-summary b { margin-left: auto; font-size: 1.3rem; }
+  .club-wizard-mobile-next { display: block; padding: .6rem .9rem; border: 0; border-radius: .4rem; background: var(--tirrenia-capri-blue); color: white; font-weight: 700; }
+  .club-wizard-actions > button:last-child { display: none; }
+}
