@@ -98,3 +98,8 @@
   .club-wizard-mobile-next { display: block; padding: .6rem .9rem; border: 0; border-radius: .4rem; background: var(--tirrenia-capri-blue); color: white; font-weight: 700; }
   .club-wizard-actions > button:last-child { display: none; }
 }
+
+/* Catalogue details remain readable inside the compact booking price list. */
+.club-wizard-carnets li { flex-wrap: wrap; gap: .4rem 1rem; }
+.club-wizard-carnets li > p, .club-wizard-carnets li > details { flex-basis: 100%; margin: .25rem 0; }
+.club-package-story { white-space: pre-line; overflow-wrap: anywhere; }

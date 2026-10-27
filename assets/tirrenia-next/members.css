@@ -133,3 +133,7 @@ tirrenia-header .tn-official-header [aria-current='page'] { text-decoration: und
 @media (max-width: 900px) { .members-hero-grid, .members-order, .members-feedback, .members-account-shell { grid-template-columns: 1fr; } .members-order-image { min-height: 290px; } .members-jump { grid-template-columns: repeat(3, 1fr); } .members-more { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) { .members-page .members-wrap { width: calc(100% - 32px); } .members-hero { padding-top: 55px; } .members-hero-grid { gap: 32px; } .members-jump { grid-template-columns: 1fr 1fr; } .members-walkin-grid, .members-more, .members-account-stats, .members-account-activity { grid-template-columns: 1fr; } .members-walkin-form { align-items: stretch; } .members-walkin-form button { width: 100%; } .members-room-note { flex-direction: column; gap: 7px; } .members-footer .members-wrap { align-items: flex-start; flex-direction: column; } }
 @media (max-width: 760px) { .member-store-grid { grid-template-columns: 1fr; } }
+
+.member-store-recovery { margin-top: 1.5rem; padding: 1rem; border: 1px solid var(--tirrenia-sand-beige); border-radius: .8rem; }
+.member-store-recovery ul { display: grid; gap: 1rem; padding-left: 1.25rem; }
+.member-store-recovery code { overflow-wrap: anywhere; }
