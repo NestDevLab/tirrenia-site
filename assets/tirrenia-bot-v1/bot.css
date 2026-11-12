@@ -310,7 +310,16 @@ body:has(.bot-page) tirrenia-header .mobile-drawer .language-holder { position: 
 }
 
 @media (max-width: 560px) {
-  .bot-page { width: min(100% - 24px, 840px); padding-top: 24px; }
+  body:has(.bot-page) { overflow: hidden; }
+  .bot-page {
+    box-sizing: border-box;
+    width: 100%;
+    height: var(--bot-page-height, calc(100dvh - 70.94px));
+    min-height: 0;
+    padding: 8px max(8px, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(8px, env(safe-area-inset-left));
+    align-items: stretch;
+  }
+  .bot-page > .bot-chat { height: 100%; min-height: 0; min-width: 0; }
   .bot-chat { min-height: calc(100dvh - 24px); grid-template-rows: auto minmax(0, 1fr) auto; border-radius: 20px; }
   .bot-chat__header { min-height: 58px; padding: 8px 10px 8px 16px; }
   .bot-chat__desktop-reset,
